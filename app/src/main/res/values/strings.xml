@@ -3,4 +3,6 @@
     <string name="id">Введите id в Вконтакте</string>
     <string name="search">Найти!</string>
     <string name="info">Результат будет отображен здесь</string>
+
+    <string name="error_message">Произошла ошибка! (Проверьте подключение к интернету и перезапустите приложение)</string>
 </resources>

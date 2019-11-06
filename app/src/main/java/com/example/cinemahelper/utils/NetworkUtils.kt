@@ -33,7 +33,6 @@ object NetworkUtils {
         val urlConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
 
         try {
-            println("test 1")
             val inStream: InputStream = urlConnection.inputStream
             val scanner: Scanner = Scanner(inStream)
             scanner.useDelimiter("\\A")

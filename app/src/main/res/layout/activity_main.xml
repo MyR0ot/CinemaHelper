@@ -5,48 +5,40 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context=".MainActivity"
-    android:padding="8dp"
+    android:paddingStart="@dimen/horizontal_padding"
+    android:paddingEnd="@dimen/horizontal_padding"
+    android:paddingTop="@dimen/vertical_padding"
     android:orientation="vertical">
-<!--
-    <LinearLayout
+
+
+
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp">
-
-        <EditText
-            android:id="@+id/et_search_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/id"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textSize="25sp"/>
-        <Button
-            android:id="@+id/b_search_vk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search"/>
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/info"
-        android:padding="10dp"/>
-
--->
-
-    <ScrollView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_list"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_text"
+                android:visibility="invisible"/>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_text"
+            android:padding="@dimen/medium_padding"
+            android:text="@string/error_message"
+            android:visibility="invisible"/>
+    </FrameLayout>
+
+
 
 </LinearLayout>

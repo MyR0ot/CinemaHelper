@@ -26,11 +26,15 @@ object ParserUtil {
 
     fun loadContent():HashSet<Film> {
         val films: HashSet<Film> = HashSet();
-        val mainPageHTML = loadHTML("https://cinemadelux.ru/", "utf-8")
-        val ids: HashSet<String>? = mainPageHTML?.let { parseIds(it) }
-        for(id in ids!!){
-            val film: Film? = parseFilm("https://cinemadelux.ru/films/$id", id)
-            film?.let { films.add(it) }
+        try {
+            val mainPageHTML = loadHTML("https://cinemadelux.ru/", "utf-8")
+            val ids: HashSet<String>? = mainPageHTML?.let { parseIds(it) }
+            for(id in ids!!){
+                val film: Film? = parseFilm("https://cinemadelux.ru/films/$id", id)
+                film?.let { films.add(it) }
+            }
+        } catch (e: Exception){
+            e.printStackTrace()
         }
 
         return films
