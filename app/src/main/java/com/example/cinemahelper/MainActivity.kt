@@ -3,21 +3,23 @@ package com.example.cinemahelper
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 import android.os.AsyncTask
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemahelper.utils.ParserUtil
 
 
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
-    inner class LoadInfoTask: AsyncTask<Unit, Unit, Unit>() {
+    inner class LoadInfoTask: AsyncTask<List<Film>, Unit, Unit>() {
 
-        override fun doInBackground(vararg params: Unit?): Unit {
+        override fun doInBackground(vararg params: List<Film>?): Unit {
             films = ParserUtil.loadContent() // load information about films from cinemadelux.ru
+            // TODO: Как-то прикрутить адаптер (см main)
         }
 
 
@@ -28,29 +30,20 @@ class MainActivity : AppCompatActivity() {
                 return
             }
             showResultTextView()
-            test()
         }
+
 
         override fun onPreExecute(): Unit {
             progressBar.isVisible = true
         }
-
-
-        @Deprecated(message = "Функция для тестирования парсинга")
-        private fun test():Unit {
-            var checkStr: String = "";
-            for(film in films){
-                checkStr += "${film.toString()}\n\n"
-            }
-            tv_list.text = checkStr
-        }
-
     }
 
-    private lateinit var films: HashSet<Film>
+    private var films: List<Film> = listOf()
     private lateinit var errorMsg: TextView
     private lateinit var result: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var filmsList: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,18 +51,36 @@ class MainActivity : AppCompatActivity() {
         loadIDs()
 
 
-        LoadInfoTask().execute()
+        // LoadInfoTask().execute()
+        films = ParserUtil.loadContent() // TODO: Добавить адаптер ПОСЛЕ загрузки фильмов с сайта (в отдельном потоке нельзя?)
+
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this) // последовательное отображение сверху вниз
+        filmsList.layoutManager = layoutManager
+        filmsList.setHasFixedSize(true)
+
+
+        filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
+            override fun onItemClicked(item: Film) {
+                // TODO: Открытие детального активити
+                println(item.toString())
+            }
+        })
+
+
 
         // TODO: Оторвать ноги дизайнеру (change background, убрать header приложения)
         // TODO: Отрисовать базовое активити после загрузки данных
-        // TODO: Реализовать передачу фильмов через интенты в детальное активити
         // TODO: Отрисовать детальное активити
+        // TODO: Реализовать передачу фильмов через интенты в детальное активити
+        // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
     }
+
+
 
     fun loadIDs():Unit {
         this.errorMsg = findViewById(R.id.tv_error_message)
-        this.result = findViewById(R.id.tv_list)
         this.progressBar = findViewById(R.id.pb_loading_films)
+        this.filmsList = findViewById(R.id.rv_films)
     }
 
     fun showResultTextView(): Unit {

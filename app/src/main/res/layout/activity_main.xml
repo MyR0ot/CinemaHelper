@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".MainActivity"
+    android:orientation="vertical"
     android:paddingStart="@dimen/horizontal_padding"
-    android:paddingEnd="@dimen/horizontal_padding"
     android:paddingTop="@dimen/vertical_padding"
-    android:orientation="vertical">
-
+    android:paddingEnd="@dimen/horizontal_padding"
+    tools:context=".MainActivity">
 
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible"> <!--TODO: После перевода на асинхронность вернуть в invisiable-->
 
-
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_films"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/medium_text"
-                android:visibility="invisible"/>
-        </ScrollView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
             android:id="@+id/tv_error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/medium_text"
             android:padding="@dimen/medium_padding"
             android:text="@string/error_message"
-            android:visibility="invisible"/>
+            android:textSize="@dimen/medium_text"
+            android:visibility="invisible" />
 
         <ProgressBar
             android:id="@+id/pb_loading_films"
@@ -46,9 +40,6 @@
             android:visibility="invisible">
 
         </ProgressBar>
-
     </FrameLayout>
 
-
-
-</LinearLayout>
+</FrameLayout>

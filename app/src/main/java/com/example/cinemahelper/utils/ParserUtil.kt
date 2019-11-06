@@ -24,7 +24,7 @@ object ParserUtil {
     )
 
 
-    fun loadContent():HashSet<Film> {
+    fun loadContent():List<Film> {
         val films: HashSet<Film> = HashSet();
         try {
             val mainPageHTML = loadHTML("https://cinemadelux.ru/", "utf-8")
@@ -37,7 +37,7 @@ object ParserUtil {
             e.printStackTrace()
         }
 
-        return films
+        return films.toList()
     }
 
     /*
