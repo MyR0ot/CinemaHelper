@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#004CE6">
+	<meta name="theme-color" content="#004CE6">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+
+	<title>Кинотеатр Синема Де Люкс</title>
+	<link href="/dist/css/chunk-common.css?1572266720" rel="preload" as="style">
+	<link href="/dist/css/chunk-vendors.css?1572266720" rel="preload" as="style">
+	<link href="/dist/js/chunk-common.js?1572266721" rel="preload" as="script">
+	<link href="/dist/js/chunk-vendors.js?1572266721" rel="preload" as="script">
+	<link href="/dist/css/chunk-common.css?1572266720" rel="stylesheet">
+	<link href="/dist/css/chunk-vendors.css?1572266720" rel="stylesheet">
+	<script type="text/javascript" src="/dist/js/chunk-common.js?1572266721"></script>
+	<script type="text/javascript" src="/dist/js/chunk-vendors.js?1572266721"></script>
+		<link href="/dist/js/index.js?1572266721" rel="preload" as="script">
+	<script type="text/javascript" src="/dist/js/index.js?1572266721"></script>
+	<script type="text/javascript">
+		window.__INITIAL_DATA__ = {};
+	
+			window.__INITIAL_DATA__["login_tips"] = [{"img":"\/upload\/iblock\/011\/0111264a000f187683456eea811eb7bd.png","title":"\u0411\u0430\u0437\u0437 \u041b\u0430\u0439\u0442\u0435\u0440","content":"\u0411\u0435\u0441\u043a\u043e\u043d\u0435\u0447\u043d\u043e\u0441\u0442\u044c - \u043d\u0435 \u043f\u0440\u0435\u0434\u0435\u043b!"},{"img":"\/upload\/iblock\/48b\/48b8f2e42b242707f7f611e9b7be91ac.jpg","title":"\u0420\u0430\u0439\u0430\u043d \u0413\u043e\u0441\u043b\u0438\u043d\u0433","content":"\u0410\u043a\u0442\u0451\u0440"},{"img":"\/upload\/iblock\/c22\/c22e1e143e3b61bd5af505846082b4b9.jpg","title":"\u0413\u0435\u043e\u0440\u0433\u0438\u0439 \u0414\u0430\u043d\u0435\u043b\u0438\u044f","content":"\u0420\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442"},{"img":"\/upload\/iblock\/d75\/d756fb715a9331548626392643c9755e.jpg","title":"\u041b\u0435\u043e\u043d\u0430\u0440\u0434\u043e \u0414\u0438\u043a\u0430\u043f\u0440\u0438\u043e","content":"\u0410\u043a\u0442\u0451\u0440"},{"img":"\/upload\/iblock\/031\/0313e0c5f047fb54032a256b24e5a6bd.jpg","title":"\u0414\u0436\u0435\u0439\u043c\u0441 \u041a\u0435\u043c\u0435\u0440\u043e\u043d","content":"\u0420\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442"},{"img":"\/upload\/iblock\/27f\/27f5e3c166e9a1f640daa45100b52b07.jpg","title":"\u041a\u0438\u0440\u0430 \u041d\u0430\u0439\u0442\u043b\u0438","content":"\u0410\u043a\u0442\u0440\u0438\u0441\u0430"},{"img":"\/upload\/iblock\/c9c\/c9c7d43cbcff966c3c3146b670506b0a.jpg","title":"\u0421\u0442\u0435\u043d\u043b\u0438 \u041a\u0443\u0431\u0440\u0438\u043a","content":"\u0420\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442, \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/d27\/d2702175c5bf9b9582472d204e1be441.jpg","title":"\u041c\u0435\u0440\u0438\u043b \u0421\u0442\u0440\u0438\u043f","content":"\u0410\u043a\u0442\u0440\u0438\u0441\u0430 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/2e6\/2e617b813dc47cb96819e8f614dcdafa.jpg","title":"\u041c\u0435\u0440\u043b\u0438\u043d \u041c\u043e\u043d\u0440\u043e","content":"\u0410\u043a\u0442\u0440\u0438\u0441\u0430, \u043f\u0435\u0432\u0438\u0446\u0430, \u043c\u043e\u0434\u0435\u043b\u044c"},{"img":"\/upload\/iblock\/22f\/22fee317c849cbb03dee12191fc9a618.jpg","title":"\u0410\u043d\u0434\u0440\u0435\u0439 \u041c\u0438\u0440\u043e\u043d\u043e\u0432","content":"\u0410\u043a\u0442\u0435\u0440 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e, \u0430\u0440\u0442\u0438\u0441\u0442 \u044d\u0441\u0442\u0440\u0430\u0434\u044b"},{"img":"\/upload\/iblock\/ab1\/ab1aa766136779e356fab5bed0fc4362.jpg","title":"\u0414\u0436\u0435\u043a \u041d\u0438\u043a\u043e\u043b\u0441\u043e\u043d","content":"\u0410\u043a\u0442\u0451\u0440, \u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/84d\/84d5173a2764dee8f9583a82037957e6.jpg","title":"\u0413\u044d\u0440\u0438 \u041e\u043b\u0434\u043c\u0435\u043d","content":"\u0410\u043a\u0442\u0451\u0440, \u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u043c\u0443\u0437\u044b\u043a\u0430\u043d\u0442"},{"img":"\/upload\/iblock\/32e\/32e1d6cf632c0d3e979046fcfd52aca8.jpg","title":"\u041c\u0430\u0440\u0442\u0438\u043d \u0421\u043a\u043e\u0440\u0441\u0435\u0437\u0435","content":"\u0420\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440. \u041d\u0430 \u0444\u043e\u0442\u043e \u0441\u043f\u0440\u0430\u0432\u0430."},{"img":"\/upload\/iblock\/884\/884b3d67cc2f137c6df251cb188ff35e.jpg","title":"\u0418\u043d\u043d\u043e\u043a\u0435\u043d\u0442\u0438\u0439 \u0421\u043c\u043e\u043a\u0442\u0443\u043d\u043e\u0432\u0441\u043a\u0438\u0439","content":"\u0410\u043a\u0442\u0451\u0440 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e"},{"img":"\/upload\/iblock\/b09\/b099928ade7974d02f461ea769abe384.jpg","title":"\u041a\u0435\u0432\u0438\u043d \u0421\u043f\u0435\u0439\u0441\u0438","content":"\u0410\u043a\u0442\u0451\u0440, \u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/df0\/df0b960f9e26d6c0b44e069066c10e69.jpg","title":"\u0421\u0442\u044d\u043d \u041b\u0438","content":"\u041f\u0438\u0441\u0430\u0442\u0435\u043b\u044c, \u0441\u043e-\u0430\u0432\u0442\u043e\u0440 \u0427\u0435\u043b\u043e\u0432\u0435\u043a\u0430 \u043f\u0430\u0443\u043a\u0430, \u0425\u0430\u043b\u043a\u0430, \u0416\u0435\u043b\u0435\u0437\u043d\u043e\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430 \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u0433\u0435\u0440\u043e\u0435\u0432 \u0432\u0441\u0435\u043b\u0435\u043d\u043d\u043e\u0439 \u041c\u0430\u0440\u0432\u0435\u043b "},{"img":"\/upload\/iblock\/f81\/f81c667bf2a69e4c5ad89b68930323fd.jpg","title":"\u041a\u0432\u0435\u043d\u0442\u0438\u043d \u0422\u0430\u0440\u0430\u043d\u0442\u0438\u043d\u043e","content":"\u0420\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0441\u0442, \u0430\u043a\u0442\u0451\u0440, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/ed0\/ed0e8e9a4036c33ec3a2666be8750429.jpg","title":"\u0412\u044f\u0447\u0435\u0441\u043b\u0430\u0432 \u0422\u0438\u0445\u043e\u043d\u043e\u0432","content":"\u0410\u043a\u0442\u0451\u0440 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e"},{"img":"\/upload\/iblock\/b2b\/b2bc735f88e2d1a7cf36289bc7caf41c.jpg","title":"\u0422\u043e\u043c \u0425\u044d\u043d\u043a\u0441","content":"\u0410\u043a\u0442\u0451\u0440, \u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440, \u043f\u0440\u043e\u0434\u044e\u0441\u0435\u0440"},{"img":"\/upload\/iblock\/016\/01602c1f31d2eb6f3f45f9a766955044.jpg","title":"\u0410\u043b\u0438\u0441\u0430 \u0424\u0440\u0435\u0439\u043d\u0434\u043b\u0438\u0445","content":"\u0410\u043a\u0442\u0440\u0438\u0441\u0430 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e, \u043f\u0435\u0432\u0438\u0446\u0430"},{"img":"\/upload\/iblock\/474\/474e47c6f41a35c36f1549260a0595cc.jpg","title":"\u0424\u0440\u0443\u043d\u0437\u0438\u043a \u041c\u043a\u0440\u0442\u0447\u0430\u043d","content":"\u0410\u043a\u0442\u0451\u0440 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e"},{"img":"\/upload\/iblock\/d3a\/d3a728d3be60694c9132770cfaec60c1.jpg","title":"\u041e\u043b\u0435\u0433 \u042f\u043d\u043a\u043e\u0432\u0441\u043a\u0438\u0439","content":"\u0410\u043a\u0442\u0451\u0440 \u0442\u0435\u0430\u0442\u0440\u0430 \u0438 \u043a\u0438\u043d\u043e"},{"img":"\/upload\/iblock\/cd2\/cd25121f23326e1101c8046f9175dcbc.png","title":"\u0411\u0435\u0437\u0437\u0443\u0431\u0438\u043a","content":"\u041d\u043e\u0447\u043d\u0430\u044f \u0444\u0443\u0440\u0438\u044f"},{"img":"\/upload\/iblock\/463\/463009b18f343b99f331c96017264307.png","title":"\u0411\u0440\u0438 \u041b\u0430\u0440\u0441\u043e\u043d","content":"\u0410\u043a\u0442\u0440\u0438\u0441\u0430, \u0441\u044b\u0433\u0440\u0430\u0432\u0448\u0430\u044f \u041a\u0430\u043f\u0438\u0442\u0430\u043d\u0430 \u041c\u0430\u0440\u0432\u0435\u043b"}];
+	
+	
+		</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="синема, кино, билеты в кино, купить билеты в кино, билеты в кино онлайн" />
+<meta name="description" content="Кинотеатр в Обнинске. Расписание сеансов, покупка и бронирование билетов." />
+<script type="text/javascript">var _ba = _ba || []; _ba.push(["aid", "602cebfbef251cf3cad9a432390a20b3"]); _ba.push(["host", "cinemadelux.ru"]); (function() {var ba = document.createElement("script"); ba.type = "text/javascript"; ba.async = true;ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ba, s);})();</script>
+
+
+
+	<meta property="og:title" content="Кинотеатр Синема Де Люкс" />
+	<meta property="og:description" content="Кинотеатр в Обнинске. Расписание сеансов, покупка и бронирование билетов." />
+	<meta property="og:image" content="https://cinemadelux.ru/dist/img/cinema_og_image.png" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://cinemadelux.ru/" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7836519544248023",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+		<div id="app">
+
+		<div>
+			<!-- header -->
+			<div class="header_wrap" ref="header_wrap">
+				<div class="center_wrap">
+					<div class="header">
+						<div class="header__left">
+							<div class="header__i__menu" @click="modals.off_canvas.visibility = true">
+								<i class="u_icon u_icon-standalone u_icon-burger"></i>
+							</div>
+													<span class="header__i__logo"></span>
+													<div class="header__i__tel">
+								<a href="tel:+79056402040" class="u_no_link u_fs-xl u_fw-med u_fc-white">+7 (905) 640-20-40</a>
+							</div>
+						</div>
+						<div class="header__right">
+							<a class="u_link-yellow header__i__schedule" href="/schedule/">
+								<span>Расписание сеансов</span>
+							</a>
+													<a class="u_link-yellow header__i__user" v-on:click="modals.login.visibility = true">
+								<i class="u_icon u_icon-user"></i> <span>Личный кабинет</span>
+							</a>
+												</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- off-canvas -->
+			<div class="off_canvas" :class="{'active': modals.off_canvas.visibility}">
+				<div class="off_canvas__close" @click="modals.off_canvas.visibility = false">
+					<i class="u_icon u_icon-cross-white"></i>
+				</div>
+				<nav>
+					
+	<ul class="u_no_ul">
+					<li><a class="u_link-white u_link-white-underline " href="/schedule/">Расписание</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/personal/">Личный кабинет</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/payment/">Как купить билет?</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/booking/">Как забронировать?</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/card/">Карта киномана</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/gift/">Кино в подарок</a></li>
+					<li><a class="u_link-white u_link-white-underline " href="/about/">О кинотеатре</a></li>
+			</ul>
+				</nav>
+			</div>
+		</div>
+
+	
+	<div class="center_wrap">
+			<div class="rock_card">
+			<div class="rock_card__shadow" style="background-image: url('/upload/iblock/c8f/c8fd6d48f034d6ed781a14f59cc925af.png');"></div>
+			<div class="rock_card__bg" style="background-image: url('/upload/iblock/c8f/c8fd6d48f034d6ed781a14f59cc925af.png');"></div>
+			<div class="rock_card__content">
+				<span class="rock_card__content__label">Halloween</span>
+				<h1 class="u_fs-h0 u_fc-white">Семейка Адамс</h1>
+				<span class="rock_card__content__date">Думаете, ваша семейка странная?</span>
+			</div>
+			<a href="/films/11503481"  class="rock_card__link"></a>
+		</div>
+		</div>
+  
+	<div class="center_wrap">
+		<h2 class="u_fc-white">Сейчас в кино</h2>
+	</div>
+	<div class="film_cols_wrap">	
+		<div class="film_cols">
+							<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/d49/300_450_1/d496ca2e06666d4b72723063bc1f0c7f.jpg" class="film_card__bg">
+							<a href="/films/11610283" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Урфин Джюс возвращается</div>
+									<p class="film_card__info__desc">мультфильм</p>
+									<p><nobr class="u_mr-m">1 час 20 мин</nobr><span class="film_label">2D</span><span class="film_label">6+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11610283?session=11680942" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">13:40</a>
+																			<a href="/films/11610283" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>5 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/b1f/300_450_1/b1f04d651117d31e216010a857b0759a.jpg" class="film_card__bg">
+							<a href="/films/11503481" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Семейка Аддамс</div>
+									<p class="film_card__info__desc">мультфильм, ужасы, фэнтези, комедия, семейный</p>
+									<p><nobr class="u_mr-m">1 час 35 мин</nobr><span class="film_label">2D</span>											<span class="film_label">3D</span>
+											<span class="film_label">12+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11503481?session=11680777" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">13:45</a>
+																			<a href="/films/11503481?session=11680821" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">15:30</a>
+																			<a href="/films/11503481" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>5 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/5c8/300_450_1/5c8091963411b48b3f30dc997d6f2396.jpg" class="film_card__bg">
+							<a href="/films/11503505" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Терминатор: Темные судьбы</div>
+									<p class="film_card__info__desc">фантастика, боевик, приключения</p>
+									<p><nobr class="u_mr-m">2 часа 15 мин</nobr><span class="film_label">2D</span><span class="film_label">16+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11503505?session=11680909" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">14:05</a>
+																			<a href="/films/11503505?session=11680898" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">16:30</a>
+																			<a href="/films/11503505" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>10 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/2eb/300_450_1/2eb37baf450910d891c00b49ba4c89a4.jpg" class="film_card__bg">
+							<a href="/films/11503472" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Робо</div>
+									<p class="film_card__info__desc">драма, семейный, фантастика</p>
+									<p><nobr class="u_mr-m">1 час 30 мин</nobr><span class="film_label">2D</span><span class="film_label">6+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11503472?session=11680744" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">14:35</a>
+																			<a href="/films/11503472?session=11680766" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">17:30</a>
+																			<a href="/films/11503472" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>10 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/13f/300_450_1/13f6e1c7b8e26ab8d87942d16a4ac79a.jpg" class="film_card__bg">
+							<a href="/films/11501471" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Малефисента: Владычица тьмы</div>
+									<p class="film_card__info__desc">фэнтези, приключения, семейный</p>
+									<p><nobr class="u_mr-m">2 часа 5 мин</nobr><span class="film_label">2D</span>											<span class="film_label">3D</span>
+											<span class="film_label">6+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11501471?session=11680711" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">15:10</a>
+																			<a href="/films/11501471?session=11680722" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">19:15</a>
+																			<a href="/films/11501471" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>5 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/a04/300_450_1/a0495a38faaece4d84f8170507bd9bbc.jpg" class="film_card__bg">
+							<a href="/films/11503452" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Дитя погоды</div>
+									<p class="film_card__info__desc">аниме, мультфильм, мелодрама, фэнтези</p>
+									<p><nobr class="u_mr-m">1 час 55 мин</nobr><span class="film_label">2D</span><span class="film_label">12+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11503452?session=11680689" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">16:25</a>
+																			<a href="/films/11503452" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/0d1/300_450_1/0d1ef2c7755c231796fa4ef7ac336bee.jpg" class="film_card__bg">
+							<a href="/films/11503450" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Верность</div>
+									<p class="film_card__info__desc">драма</p>
+									<p><nobr class="u_mr-m">1 час 25 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11503450?session=11680678" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">18:35</a>
+																			<a href="/films/11503450?session=11680667" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">22:05</a>
+																			<a href="/films/11503450" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>15 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/39e/300_450_1/39eb22d89af6cce4871adcbd6bbb16c6.jpg" class="film_card__bg">
+							<a href="/films/11501475" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Zомбилэнд: Контрольный Выстрел</div>
+									<p class="film_card__info__desc">ужасы, боевик, комедия</p>
+									<p><nobr class="u_mr-m">1 час 40 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11501475?session=11680645" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">20:15</a>
+																			<a href="/films/11501475?session=11680634" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">23:55</a>
+																			<a href="/films/11501475" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>15 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/812/300_450_1/81254536defccd9b1fc604fa487d11e6.jpg" class="film_card__bg">
+							<a href="/films/11501473" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Текст</div>
+									<p class="film_card__info__desc">драма, триллер</p>
+									<p><nobr class="u_mr-m">2 часа 15 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11501473?session=11680854" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">21:30</a>
+																			<a href="/films/11501473?session=11680843" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">23:45</a>
+																			<a href="/films/11501473" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>10 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/81c/300_450_1/81c652efff4e8c6155c1ff0b3e5d37d7.jpg" class="film_card__bg">
+							<a href="/films/11478027" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Джокер</div>
+									<p class="film_card__info__desc">триллер, драма, криминал</p>
+									<p><nobr class="u_mr-m">2 часа 15 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Сегодня:</span>
+																			<a href="/films/11478027?session=11682728" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">23:10</a>
+																			<a href="/films/11478027" class="u_btn u_btn-blue u_btn-free u_no_link u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>5 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/d41/300_450_1/d41605f0a474db9ae5f357861570b1a1.jpg" class="film_card__bg">
+							<a href="/films/11503561" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Француз</div>
+									<p class="film_card__info__desc">история, драма</p>
+									<p><nobr class="u_mr-m">2 часа 10 мин</nobr><span class="film_label">2D</span><span class="film_label">16+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Завтра:</span>
+																			<a href="/films/11503561?session=11683894" class="u_btn u_btn-pale u_btn-free u_btn-s">12:15</a>
+																			<a href="/films/11503561" class="u_btn u_btn-pale u_btn-free u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/fc2/300_450_1/fc2468e4537f2af358ac1668666ef717.jpg" class="film_card__bg">
+							<a href="/films/11620427" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Сон в летнюю ночь</div>
+									<p class="film_card__info__desc">драма, мелодрама, комедия</p>
+									<p><nobr class="u_mr-m">3 часа 5 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Среда:</span>
+																			<a href="/films/11620427?session=11620623" class="u_btn u_btn-pale u_btn-free u_btn-s">19:00</a>
+																			<a href="/films/11620427" class="u_btn u_btn-pale u_btn-free u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/9ab/300_450_1/9abf38d51e1fdd14f22d53d9fda8b550.jpg" class="film_card__bg">
+							<a href="/films/11624811" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Depeche Mode: Spirits in the Forest</div>
+									<p class="film_card__info__desc">документальный, музыка</p>
+									<p><nobr class="u_mr-m">1 час 35 мин</nobr><span class="film_label">2D</span><span class="film_label">16+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Четверг:</span>
+																			<a href="/films/11624811?session=11625334" class="u_btn u_btn-pale u_btn-free u_btn-s">19:20</a>
+																			<a href="/films/11624811" class="u_btn u_btn-pale u_btn-free u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/ebe/300_450_1/ebecfc6c5b6dbdfe25dcf8a698b538a0.jpg" class="film_card__bg">
+							<a href="/films/11620579" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Один слуга, два господина</div>
+									<p class="film_card__info__desc">мюзикл, комедия</p>
+									<p><nobr class="u_mr-m">3 часа 5 мин</nobr><span class="film_label">2D</span><span class="film_label">16+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Воскресенье:</span>
+																			<a href="/films/11620579?session=11620645" class="u_btn u_btn-pale u_btn-free u_btn-s">18:00</a>
+																			<a href="/films/11620579" class="u_btn u_btn-pale u_btn-free u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div class="film_cols__i">
+						<div class="film_card">
+							<img src="/upload/resize_cache/iblock/5c7/300_450_1/5c73d52eef032436c665c5105c689870.jpg" class="film_card__bg">
+							<a href="/films/11620617" class="film_card__link"></a>
+							<div class="film_card__info_wrap">
+								<div class="film_card__info">
+									<div class="film_card__info__title u_link">Мудрые дети</div>
+									<p class="film_card__info__desc"></p>
+									<p><nobr class="u_mr-m">2 часа 30 мин</nobr><span class="film_label">2D</span><span class="film_label">18+</span></p>
+																	<div class="film_card__info__sessions">
+										<span class="u_fc-muted u_fs-xxs">Среда:</span>
+																			<a href="/films/11620617?session=11620660" class="u_btn u_btn-pale u_btn-free u_btn-s">19:00</a>
+																			<a href="/films/11620617" class="u_btn u_btn-pale u_btn-free u_btn-s">&nbsp;→&nbsp;</a>
+									</div>
+																	<div class="film_card__info__footer">
+																			<div class="film_card__info__footer__points">
+											<span><i class="u_icon u_icon-star-small u_mr-s"></i>20 баллов</span>
+										</div>
+																			<button class="u_btn u_btn-icon u_btn-blue-full">Билеты</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						</div>
+	</div>
+<div class="center_wrap u_mt-xxl u_mb-xxl">
+    <div class="recl_block">
+        <ya-adv advid="R-A-334615-1">&nbsp;</ya-adv>
+    </div>
+</div>
+		
+	<div class="center_wrap u_mt-xxl">
+		<h2 class="u_fc-white">Скоро в кино</h2>
+	</div>
+	<div class="film_cols_wrap" data-count="4">	
+		<div class="film_cols film_cols-compact">
+						<div class="film_cols__i">
+					<div class="film_card film_card-later">
+						<img src="/upload/resize_cache/iblock/be2/300_350_1/be228bd73cd6c4333821f110f7184212.jpg" class="film_card__bg">
+											<div class="film_card__later_label">с 14 ноября</div>
+											<a href="/films/11624172" class="film_card__link"></a>
+						<div class="film_card__info_wrap">
+							<div class="film_card__info">
+								<div class="film_card__info__title u_link">Грех</div>
+								<p class="film_card__info__desc">драма, биография, история</p>
+								<p class="film_card__info__desc">2 часа 15 мин<span class="film_label film_label-s">2D</span><span class="film_label film_label-s">16+</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+									<div class="film_cols__i">
+					<div class="film_card film_card-later">
+						<img src="/upload/resize_cache/iblock/d5a/300_350_1/d5aade758a48401d899d72c4c20a8882.jpg" class="film_card__bg">
+											<div class="film_card__later_label">с 28 ноября</div>
+											<a href="/films/11400580" class="film_card__link"></a>
+						<div class="film_card__info_wrap">
+							<div class="film_card__info">
+								<div class="film_card__info__title u_link">Тварь</div>
+								<p class="film_card__info__desc">ужасы, триллер, драма</p>
+								<p class="film_card__info__desc">1 час 40 мин<span class="film_label film_label-s">2D</span><span class="film_label film_label-s">16+</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+									<div class="film_cols__i">
+					<div class="film_card film_card-later">
+						<img src="/upload/resize_cache/iblock/859/300_350_1/859173f70496c2df8b3e1c968003faf8.jpg" class="film_card__bg">
+											<div class="film_card__later_label">с 28 ноября</div>
+											<a href="/films/11620006" class="film_card__link"></a>
+						<div class="film_card__info_wrap">
+							<div class="film_card__info">
+								<div class="film_card__info__title u_link">Холодное сердце 2 (3D)</div>
+								<p class="film_card__info__desc">мультфильм, мюзикл, фэнтези, комедия, приключения, семейный</p>
+								<p class="film_card__info__desc">1 час 50 мин<span class="film_label film_label-s">2D</span><span class="film_label film_label-s">6+</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+									<div class="film_cols__i">
+					<div class="film_card film_card-later">
+						<img src="/upload/resize_cache/iblock/c5c/300_350_1/c5c379d403a65afc072655be1aa0f7b1.jpg" class="film_card__bg">
+											<div class="film_card__later_label">с 28 ноября</div>
+											<a href="/films/11619982" class="film_card__link"></a>
+						<div class="film_card__info_wrap">
+							<div class="film_card__info">
+								<div class="film_card__info__title u_link">Достать ножи</div>
+								<p class="film_card__info__desc">триллер, драма, комедия, криминал, детектив</p>
+								<p class="film_card__info__desc">2 часа 10 мин<span class="film_label film_label-s">2D</span><span class="film_label film_label-s">16+</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+	</div>
+
+	
+		<div class="center_wrap">
+			<footer class="footer"
+				itemscope
+				itemtype="http://schema.org/MovieTheater">
+
+				<meta itemProp="name" content="Кинотеатр Синема Де Люкс"/>
+				<meta itemProp="url" content="https://cinemadelux.ru/"/>
+				<meta itemProp="priceRange" content=""/>
+				<meta itemProp="image" content="https://cinemadelux.ru/dist/img/logo.svg"/>
+				<meta itemProp="telephone" content="+7 (905) 640-20-40"/>
+
+				<!-- <nav class="footer__links">
+					
+	<ul class="u_no_ul">
+					<li><a class="u_link-white u_fw-med " href="/schedule/">Расписание</a></li>
+					<li><a class="u_link-white u_fw-med " href="/personal/">Личный кабинет</a></li>
+					<li><a class="u_link-white u_fw-med " href="/payment/">Как купить билет?</a></li>
+					<li><a class="u_link-white u_fw-med " href="/booking/">Как забронировать?</a></li>
+					<li><a class="u_link-white u_fw-med " href="/card/">Карта киномана</a></li>
+					<li><a class="u_link-white u_fw-med " href="/gift/">Кино в подарок</a></li>
+					<li><a class="u_link-white u_fw-med " href="/about/">О кинотеатре</a></li>
+		</ul>
+				</nav> -->
+				<!-- <div class="footer__tel">
+					<div>Бронируйте билеты по телефону</div>
+					<a href="tel:+79056402040" class="u_link-white u_fs-h0 u_fw-med">+7 (905) 640-20-40</a>
+				</div> -->
+				<div class="footer__contacts"
+					itemProp="address"
+					itemscope=""
+					itemType="http://schema.org/PostalAddress">
+					<meta itemProp="addressCountry" content="Россия"/>
+					<meta itemProp="addressLocality" content="Обнинск"/>
+					<meta itemProp="streetAddress" content="ТРК «Триумф Плаза», г. Обнинск, пр. Маркса, 45"/>
+					<div class="footer__contacts__logo"></div>
+					<address>Мы находимся в&nbsp;<a href="https://triumph-plaza.ru" class="u_link-white u_fw-med" target="_blank">ТРК&nbsp;«Триумф Плаза»</a>, г.&nbsp;Обнинск, пр.&nbsp;Маркса, 45. <nobr>+7 (905) 640-20-40</nobr></address>
+					<p class="">Сайт разработан и поддерживается:&nbsp;<a href="http://benefi.ru/" target="_blank" class="u_link-white u_fw-med">Benefi</a></p>
+				</div>
+				<div itemProp="geo"
+					itemscope=""
+					itemType="http://schema.org/GeoCoordinates">
+					<meta itemProp="latitude" content="latitude"/>
+					<meta itemProp="longitude" content="longitude"/>
+				</div>
+				<div class="footer__social">
+					<div class="footer__social__i">
+						<a href="https://vk.com/cinemaobninsk" target="_blank" class="u_link-white"><i class="u_icon u_icon-soc_vk"></i></a>
+					</div>
+					<div class="footer__social__i">
+						<a href="https://www.instagram.com/cinemaobninsk/" target="_blank" class="u_link-white"><i class="u_icon u_icon-soc_inst"></i></a>
+					</div>
+					<div class="footer__social__i">
+						<a href="https://www.facebook.com/cinemaobninsk" target="_blank" class="u_link-white"><i class="u_icon u_icon-soc_fb"></i></a>
+					</div>
+					<div class="footer__social__i">
+						<a href="https://ok.ru/cinemaobninsk" target="_blank" class="u_link-white"><i class="u_icon u_icon-soc_odn"></i></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<poster-modal :url="modals.poster.url" v-on:_close="modals.poster.url = null"></poster-modal>
+		<video-modal :video_id="modals.video.id" v-on:_close="modals.video.id = null"></video-modal>
+		<login-modal :visibility="modals.login.visibility" v-on:_close="modals.login.visibility = false"></login-modal>
+
+	</div>
+	<!-- built files will be auto injected -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter45351783 = new Ya.Metrika({
+					id:45351783,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true,
+					webvisor:true
+				});
+			} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/45351783" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  </body>
+</html>
