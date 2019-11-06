@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
     private var films: List<Film> = listOf()
     private lateinit var errorMsg: TextView
-    private lateinit var result: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var filmsList: RecyclerView
 
@@ -85,11 +84,11 @@ class MainActivity : AppCompatActivity() {
 
     fun showResultTextView(): Unit {
         errorMsg.isVisible = false
-        result.isVisible = true
+        filmsList.isVisible = true
     }
 
     fun showErrorMessageTextView(): Unit {
-        result.isVisible = false
+        filmsList.isVisible = false
         errorMsg.isVisible = true
     }
 
