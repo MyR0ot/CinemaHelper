@@ -14,7 +14,7 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <ScrollView
@@ -37,6 +37,16 @@
             android:padding="@dimen/medium_padding"
             android:text="@string/error_message"
             android:visibility="invisible"/>
+
+        <ProgressBar
+            android:id="@+id/pb_loading_films"
+            android:layout_width="@dimen/spinner_size"
+            android:layout_height="@dimen/spinner_size"
+            android:layout_gravity="center"
+            android:visibility="invisible">
+
+        </ProgressBar>
+
     </FrameLayout>
 
 

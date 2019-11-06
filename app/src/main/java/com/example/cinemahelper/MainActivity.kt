@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.os.AsyncTask
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.example.cinemahelper.utils.ParserUtil
@@ -21,12 +22,17 @@ class MainActivity : AppCompatActivity() {
 
 
         override fun onPostExecute(result: Unit?): Unit {
+            progressBar.isVisible = false
             if(films.isNullOrEmpty()){
                 showErrorMessageTextView()
                 return
             }
             showResultTextView()
             test()
+        }
+
+        override fun onPreExecute(): Unit {
+            progressBar.isVisible = true
         }
 
 
@@ -44,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var films: HashSet<Film>
     private lateinit var errorMsg: TextView
     private lateinit var result: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     fun loadIDs():Unit {
         this.errorMsg = findViewById(R.id.tv_error_message)
         this.result = findViewById(R.id.tv_list)
+        this.progressBar = findViewById(R.id.pb_loading_films)
     }
 
     fun showResultTextView(): Unit {
