@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemahelper.utils.ParserUtil
 
 
+
+
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
-    inner class LoadInfoTask: AsyncTask<List<Film>, Unit, Unit>() {
+    inner class LoadInfoTask: AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
 
         override fun doInBackground(vararg params: List<Film>?): Unit {
             films = ParserUtil.loadContent() // load information about films from cinemadelux.ru
             // TODO: Как-то прикрутить адаптер (см main)
         }
-
 
         override fun onPostExecute(result: Unit?): Unit {
             progressBar.isVisible = false
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             }
             showResultTextView()
         }
-
 
         override fun onPreExecute(): Unit {
             progressBar.isVisible = true
@@ -48,19 +48,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loadIDs()
-
         // LoadInfoTask().execute()
         helpLoader()
 
 
-        // TODO: Спарсить сеансы для каждого фильма
         // TODO: Добавить адаптер ПОСЛЕ загрузки фильмов с сайта (в отдельном потоке нельзя?)
-        // TODO: Разобраться с загрузкой картинки (Получить Bitmap для класса Film)
         // TODO: Оторвать ноги дизайнеру (change background, убрать header приложения)
-        // TODO: Отрисовать базовое активити после загрузки данных
         // TODO: Отрисовать детальное активити
         // TODO: Реализовать передачу фильмов через интенты в детальное активити
         // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
+        // TODO: Выбор языка
+        // TODO: Добавить возможность выбора жанра
     }
 
 
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun loadIDs():Unit {
+    private fun loadIDs(): Unit {
         this.errorMsg = findViewById(R.id.tv_error_message)
         this.progressBar = findViewById(R.id.pb_loading_films)
         this.filmsList = findViewById(R.id.rv_films)
@@ -94,10 +92,6 @@ class MainActivity : AppCompatActivity() {
     fun showErrorMessageTextView(): Unit {
         filmsList.isVisible = false
         errorMsg.isVisible = true
-    }
-
-    fun printErr(errorMsg:String){
-        System.err.println(errorMsg)
     }
 }
 

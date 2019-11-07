@@ -120,7 +120,7 @@ object ParserUtil {
             val name: String = parseOneString(html,  parseMap["name"]!!.first,  parseMap["name"]!!.second)
             val duration: String = parseOneString(html,  parseMap["duration"]!!.first,  parseMap["duration"]!!.second)
             val description: String = parseOneString(html,  parseMap["description"]!!.first,  parseMap["description"]!!.second)
-            val img: String = parseOneString(html,  parseMap["img"]!!.first,  parseMap["img"]!!.second)
+            val imgPath: String = parseOneString(html,  parseMap["img"]!!.first,  parseMap["img"]!!.second)
             val tags: List<String> = parseAllStrings(html, parseMap["tags"]!!.first, parseMap["tags"]!!.second)
             val genres: List<String> = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ")
             val producer: String = parseOneString(html, parseMap["producer"]!!.first, parseMap["producer"]!!.second)
@@ -134,7 +134,7 @@ object ParserUtil {
 
 
 
-            return Film(id, name, description, duration, genres, tags, img, producer, sessions) // TODO: парсе сессии
+            return Film(id, name, description, duration, genres, tags, imgPath, producer, sessions, null) // TODO: парсе сессии
         } catch (e: Exception){
             System.err.println("Parse error!  filmID: $id")
             return null
