@@ -20,4 +20,6 @@
     <dimen name="poster_height">120dp</dimen>
 
     <dimen name="spinner_size">100dp</dimen>
+
+    <dimen name="genre_filter_size">150dp</dimen>
 </resources>

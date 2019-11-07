@@ -5,4 +5,5 @@
     <string name="info">Результат будет отображен здесь</string>
 
     <string name="error_message">Произошла ошибка! (Проверьте подключение к интернету и перезапустите приложение)</string>
+    <string name="genre_filter">Жанр:</string>
 </resources>

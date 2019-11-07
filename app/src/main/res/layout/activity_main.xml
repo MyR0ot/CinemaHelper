@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
     android:paddingStart="@dimen/horizontal_indent"
-    android:paddingEnd="@dimen/horizontal_indent"
     android:paddingTop="@dimen/vertical_indent"
+    android:paddingEnd="@dimen/horizontal_indent"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/large_indent"
+        android:paddingEnd="@dimen/large_indent"
+        android:orientation="horizontal"> <!-- TODO: Прижать все влево -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/title_size"
+            android:text="@string/genre_filter"
+            />
+
+        <Spinner
+            android:id="@+id/sp_genre_chooser"
+            android:layout_width="@dimen/genre_filter_size"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_indent"
+            />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_films"
@@ -31,8 +58,7 @@
             android:layout_width="@dimen/spinner_size"
             android:layout_height="@dimen/spinner_size"
             android:layout_gravity="center"
-            android:visibility="invisible">
-        </ProgressBar>
+            android:visibility="invisible"></ProgressBar>
+    </FrameLayout>
 
-
-</FrameLayout>
+</LinearLayout>

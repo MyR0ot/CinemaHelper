@@ -27,6 +27,12 @@ object ParserUtil {
         "sessionDates" to Pair("{\"date\":\"","\"")
     )
 
+    fun getGenres(films: List<Film>): List<String> {
+        var res: HashSet<String> = HashSet()
+        films.forEach{ it.genres.forEach {res.add(it)}}
+        return res.toList()
+    }
+
 
     fun loadContent():List<Film> {
         val films: HashSet<Film> = HashSet();
