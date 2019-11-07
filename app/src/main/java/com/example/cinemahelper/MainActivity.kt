@@ -1,11 +1,11 @@
 package com.example.cinemahelper
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.AsyncTask
+import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,29 +49,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         loadIDs()
 
-
         // LoadInfoTask().execute()
-        films = ParserUtil.loadContent() // TODO: Добавить адаптер ПОСЛЕ загрузки фильмов с сайта (в отдельном потоке нельзя?)
+        helpLoader()
 
+
+        // TODO: Спарсить сеансы для каждого фильма
+        // TODO: Добавить адаптер ПОСЛЕ загрузки фильмов с сайта (в отдельном потоке нельзя?)
+        // TODO: Разобраться с загрузкой картинки (Получить Bitmap для класса Film)
+        // TODO: Оторвать ноги дизайнеру (change background, убрать header приложения)
+        // TODO: Отрисовать базовое активити после загрузки данных
+        // TODO: Отрисовать детальное активити
+        // TODO: Реализовать передачу фильмов через интенты в детальное активити
+        // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
+    }
+
+
+    @Deprecated("Переписать выполнение в другом потоке")
+    fun helpLoader(): Unit {
+        films = ParserUtil.loadContent()
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this) // последовательное отображение сверху вниз
         filmsList.layoutManager = layoutManager
         filmsList.setHasFixedSize(true)
-
-
         filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
             override fun onItemClicked(item: Film) {
                 // TODO: Открытие детального активити
                 println(item.toString())
             }
         })
-
-
-
-        // TODO: Оторвать ноги дизайнеру (change background, убрать header приложения)
-        // TODO: Отрисовать базовое активити после загрузки данных
-        // TODO: Отрисовать детальное активити
-        // TODO: Реализовать передачу фильмов через интенты в детальное активити
-        // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
     }
 
 

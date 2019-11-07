@@ -8,12 +8,22 @@ class Film(val id: String,               // Идентификатор филь�
            val duration: String?,        // Продолжительность фильма
            val genres: List<String>,     // Жанры
            val tags: List<String>,       // Метки
-           val img: String?              // Адрес картинки
+           val img: String?,             // Адрес картинки
+           val producer: String?,        // режиссер
+           val sessions: List<Session>   // сеансы
            ) {
+
+    init {
+
+    }
 
 
     override fun toString(): String {
-        return "id: $id\nname: $name\nduration: $duration\ngenres: ${genres.toString()}\ntags: ${tags.toString()}\nimgLink: $img\ndescription: $description\n"
+        var res: String = "id: $id\nname: $name\nproducer: $producer\nduration: $duration\ngenres: ${genres.toString()}\ntags: ${tags.toString()}\nimgLink: $img\ndescription: $description\n"
+        res+="sessions: {\n"
+        sessions.forEach{ res += it.toString()+"\n"}
+        res+="}"
+        return res
     }
 
     override fun hashCode(): Int {
@@ -29,6 +39,13 @@ class Film(val id: String,               // Идентификатор филь�
 
     fun getLink():String {
         return "https://cinemadelux.ru/films/$id"
+    }
+
+
+    class Session(val date: String, val day: String, val price: String){
+        override fun toString(): String {
+            return "date: $date, time: $day, price: $price"
+        }
     }
 
 }

@@ -20,7 +20,11 @@ object ParserUtil {
         "description" to Pair("itemProp=\"description\">", "</truncate-text>"),
         "genres" to Pair("<meta itemprop=\"genre\" content=\"", "\">"),
         "img" to Pair("<meta itemProp=\"image\" content=\"", "\"/>"),
-        "tags" to Pair("<span class=\"film_label\">", "</span>")
+        "tags" to Pair("<span class=\"film_label\">", "</span>"),
+        "producer" to Pair("<span itemProp=\"name\">", "</span>"),
+        "sessionTimes" to Pair(",\"time\":\"","\",\""),
+        "sessionPrices" to Pair("\"price\":",","),
+        "sessionDates" to Pair("{\"date\":\"","\"")
     )
 
 
@@ -118,9 +122,19 @@ object ParserUtil {
             val description: String = parseOneString(html,  parseMap["description"]!!.first,  parseMap["description"]!!.second)
             val img: String = parseOneString(html,  parseMap["img"]!!.first,  parseMap["img"]!!.second)
             val tags: List<String> = parseAllStrings(html, parseMap["tags"]!!.first, parseMap["tags"]!!.second)
-            val genres: List<String> = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ") // TODO: Проверить
+            val genres: List<String> = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ")
+            val producer: String = parseOneString(html, parseMap["producer"]!!.first, parseMap["producer"]!!.second)
 
-            return Film(id, name, description, duration, genres, tags, img)
+            val sessionDates: List<String> = parseAllStrings(html, parseMap["sessionDates"]!!.first, parseMap["sessionDates"]!!.second) // TODO: Проверить
+            val sessionTimes: List<String> = parseAllStrings(html, parseMap["sessionTimes"]!!.first, parseMap["sessionTimes"]!!.second) // TODO: Проверить
+            val sessionPrices: List<String> = parseAllStrings(html, parseMap["sessionPrices"]!!.first, parseMap["sessionPrices"]!!.second) // TODO: Проверить
+
+            val sessions: List<Film.Session> = sessionDates.zip(sessionTimes).zip(sessionPrices) {(a,b), c -> listOf(a, b, c)}.map { Film.Session(it[0], it[1], it[2]) } // TODO: Проверить
+
+
+
+
+            return Film(id, name, description, duration, genres, tags, img, producer, sessions) // TODO: парсе сессии
         } catch (e: Exception){
             System.err.println("Parse error!  filmID: $id")
             return null

@@ -11,5 +11,5 @@
     <dimen name="medium_text">18sp</dimen>
     <dimen name="large_text">22sp</dimen>
 
-    <dimen name="spinner_size">90dp</dimen>
+    <dimen name="spinner_size">100dp</dimen>
 </resources>

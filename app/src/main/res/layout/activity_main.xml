@@ -12,7 +12,7 @@
 
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"> <!--TODO: После перевода на асинхронность вернуть в invisiable-->
 
@@ -20,7 +20,6 @@
             android:id="@+id/rv_films"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
@@ -38,8 +37,8 @@
             android:layout_height="@dimen/spinner_size"
             android:layout_gravity="center"
             android:visibility="invisible">
-
         </ProgressBar>
+
     </FrameLayout>
 
 </FrameLayout>
