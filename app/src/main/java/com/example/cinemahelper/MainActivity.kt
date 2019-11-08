@@ -55,34 +55,41 @@ class MainActivity : AppCompatActivity() {
             filmsList.layoutManager = layoutManager
             filmsList.setHasFixedSize(true)
             filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
-                override fun onItemClicked(item: Film) {
-                    // TODO: Открытие детального активити
-                    println(item.toString())
-                }
+                override fun onItemClicked(item: Film) { openDetailedActivity(item) }
             })
         }
 
         private fun configureSpinner(): Unit {
-            val tmp: MutableList<String> = listOf("все").union(ParserUtil.getGenres(films)).toMutableList()
-            tmp.remove("")
-            genres = tmp.toList()
+            genres = listOf("все").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }.toMutableList().toList()
             val adapter = ArrayAdapter<String>(this@MainActivity, android.R.layout.simple_spinner_item, genres)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             genreChooser.adapter = adapter
-            genreChooser.prompt = "Жанр"; // заголовок
-            genreChooser.setSelection(2); // выделяем элемент
+            genreChooser.prompt = "Жанр";
+            genreChooser.setSelection(0); // default: all genres display
             genreChooser.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>, view: View,
                     position: Int, id: Long
                 ) {
-                    Toast.makeText(baseContext, "Position = $position", Toast.LENGTH_SHORT).show() // показываем позиция нажатого элемента
-                    // TODO: Обработка нажатия выбора жанра
+                    val genre: String = genreChooser.selectedItem.toString()
+                    filmsList.swapAdapter(FilmsAdapter(films.filter { it.hasGenre(genre) }, object : FilmsAdapter.Callback {
+                        override fun onItemClicked(item: Film) { openDetailedActivity(item) }
+                    }), false)
                 }
 
-                override fun onNothingSelected(arg0: AdapterView<*>) {}
+                override fun onNothingSelected(arg0: AdapterView<*>) {
+                    genreChooser.setSelection(0);
+                }
             }
         }
+
+        private fun openDetailedActivity(film: Film): Unit {
+            println(film.toString())
+            // TODO:
+        }
+
+
+
     }
 
     private var films: List<Film> = listOf()

@@ -1,5 +1,6 @@
 package com.example.cinemahelper
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.cinemahelper.asyncTasks.DownloadImageTask
@@ -10,7 +11,7 @@ class Film(val id: String,               // Идентификатор филь�
            val name: String,             // Название фильма
            val description: String = "", // Описание фильма
            val duration: String,         // Продолжительность фильма
-           val genres: List<String>,     // Жанры
+           var genres: List<String>,     // Жанры
            val tags: List<String>,       // Метки
            val imgPath: String,          // Адрес картинки
            val producer: String,         // режиссер
@@ -30,6 +31,8 @@ class Film(val id: String,               // Идентификатор филь�
             }
             this.poster = mIcon11
         }
+
+        this.genres = genres.map { it.toLowerCase() }
     }
 
 
@@ -65,7 +68,14 @@ class Film(val id: String,               // Идентификатор филь�
     }
 
     fun getGenresAsString(): String {
-       return this.genres.joinToString { it -> it }
+       return this.genres.joinToString { it }
+    }
+
+    @SuppressLint("DefaultLocale")
+    fun hasGenre(genre: String): Boolean {
+        if(genre == "все") return true
+        val g = genre.toLowerCase()
+        return !this.genres.find { it == g }.isNullOrEmpty()
     }
 
 }

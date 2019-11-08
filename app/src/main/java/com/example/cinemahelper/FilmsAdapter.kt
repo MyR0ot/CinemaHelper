@@ -3,12 +3,19 @@ package com.example.cinemahelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemahelper.asyncTasks.DownloadImageTask
 
-class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+class FilmsAdapter(var items: List<Film>, val callback: Callback): Filterable, RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+
+
+    override fun getFilter(): Filter {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             = FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_list_item, parent, false))
@@ -18,7 +25,6 @@ class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.
     }
 
     override fun getItemCount() = items.size
-
 
 
     inner class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -54,6 +60,12 @@ class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.
 
     interface Callback {
         fun onItemClicked(item: Film)
+    }
+
+
+    fun updateList(newList: List<Film>): Unit {
+        items = newList
+        notifyDataSetChanged()
     }
 
 }
