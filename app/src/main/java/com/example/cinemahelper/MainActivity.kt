@@ -16,9 +16,8 @@ import com.example.cinemahelper.utils.ParserUtil
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AdapterView
-import android.widget.Toast
 import android.widget.AdapterView.OnItemSelectedListener
-
+import androidx.recyclerview.widget.DividerItemDecoration
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,13 +49,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         private fun configureRecyclerView(): Unit {
-            println("config recycler view")
             val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
-            filmsList.layoutManager = layoutManager
-            filmsList.setHasFixedSize(true)
-            filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
+            recyclerView.layoutManager = layoutManager
+            recyclerView.setHasFixedSize(true)
+            recyclerView.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
                 override fun onItemClicked(item: Film) { openDetailedActivity(item) }
             })
+
+            recyclerView.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
         }
 
         private fun configureSpinner(): Unit {
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     position: Int, id: Long
                 ) {
                     val genre: String = genreChooser.selectedItem.toString()
-                    filmsList.swapAdapter(FilmsAdapter(films.filter { it.hasGenre(genre) }, object : FilmsAdapter.Callback {
+                    recyclerView.swapAdapter(FilmsAdapter(films.filter { it.hasGenre(genre) }, object : FilmsAdapter.Callback {
                         override fun onItemClicked(item: Film) { openDetailedActivity(item) }
                     }), false)
                 }
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     private var genres: List<String> = listOf()
     private lateinit var errorMsg: TextView
     private lateinit var progressBar: ProgressBar
-    private lateinit var filmsList: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var genreChooser: Spinner
     private lateinit var titleGenre: TextView
 
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadIDs(): Unit {
         this.errorMsg = findViewById(R.id.tv_error_message)
         this.progressBar = findViewById(R.id.pb_loading_films)
-        this.filmsList = findViewById(R.id.rv_films)
+        this.recyclerView = findViewById(R.id.rv_films)
         this.genreChooser = findViewById(R.id.sp_genre_chooser)
         this.titleGenre = findViewById(R.id.tv_title_genre)
     }
@@ -130,13 +130,13 @@ class MainActivity : AppCompatActivity() {
         errorMsg.isVisible = false
         titleGenre.isVisible = true
         genreChooser.isVisible = true
-        filmsList.isVisible = true
+        recyclerView.isVisible = true
     }
 
     fun showErrorMessageTextView(): Unit {
         titleGenre.isVisible = false
         genreChooser.isVisible = false
-        filmsList.isVisible = false
+        recyclerView.isVisible = false
         errorMsg.isVisible = true
     }
 }
