@@ -27,6 +27,11 @@ object ParserUtil {
         "sessionDates" to Pair("{\"date\":\"","\"")
     )
 
+    private val changerList: List<Pair<String, String>> = listOf(
+        Pair("\"&#40\"","("),
+        Pair("\"&#41\"",")")
+    )
+
     fun getGenres(films: List<Film>): List<String> {
         var res: HashSet<String> = HashSet()
         films.forEach{ it.genres.forEach {res.add(it)}}
@@ -49,13 +54,6 @@ object ParserUtil {
 
         return films.toList()
     }
-
-    /*
-    private fun loadImage(url: String, imgView: ImageView): Unit {
-        Glide.with(this) // TODO: найти нужный контекст (вместо this)
-            .load(url).into(imgView)
-    }
-    */
 
 
     private fun loadHTML(url: String, charsetName: String = "windows-1251"): String?  {
@@ -100,7 +98,9 @@ object ParserUtil {
 
     private fun parseOneString(text: String, startWord: String, stopWord: String): String {
         val beginIndex: Int = text.indexOf(startWord) + startWord.length
-        return text.substring(beginIndex, text.indexOf(stopWord, beginIndex))
+        val res = text.substring(beginIndex, text.indexOf(stopWord, beginIndex))
+        changerList.forEach{ res.replace(it.first, it.second)}
+        return res
     }
 
     private fun parseAllStrings(text: String, startWord: String, stopWord: String): List<String> {
@@ -136,7 +136,6 @@ object ParserUtil {
             val sessionPrices: List<String> = parseAllStrings(html, parseMap["sessionPrices"]!!.first, parseMap["sessionPrices"]!!.second) // TODO: Проверить
 
             val sessions: List<Film.Session> = sessionDates.zip(sessionTimes).zip(sessionPrices) {(a,b), c -> listOf(a, b, c)}.map { Film.Session(it[0], it[1], it[2]) } // TODO: Проверить
-
 
 
 

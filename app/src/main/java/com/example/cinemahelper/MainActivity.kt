@@ -1,8 +1,11 @@
 package com.example.cinemahelper
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ProgressBar
@@ -18,17 +21,26 @@ import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.recyclerview.widget.DividerItemDecoration
+import android.graphics.Bitmap
+import java.io.ByteArrayOutputStream
 
 
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
-    inner class LoadInfoTask: AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
+    inner class LoadInfoTask : AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
 
         override fun doInBackground(vararg params: List<Film>?): Unit {
-            println("do in background")
             films = ParserUtil.loadContent() // load information about films from cinemadelux.ru
-            if(films.isNullOrEmpty()) return
+            films.forEach { it ->
+                it.poster?.let { poster ->
+                    this@MainActivity.createImageFromBitmap(
+                        poster,
+                        it.getFileName()
+                    )
+                }
+            }
+            if (films.isNullOrEmpty()) return
             this@MainActivity.runOnUiThread {
                 configureRecyclerView()
                 configureSpinner()
@@ -37,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: Unit?): Unit {
             progressBar.isVisible = false
-            if(films.isNullOrEmpty()){
+            if (films.isNullOrEmpty()) {
                 showErrorMessageTextView()
                 return
             }
@@ -49,19 +61,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         private fun configureRecyclerView(): Unit {
-            val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
+            val layoutManager: RecyclerView.LayoutManager =
+                LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
             recyclerView.layoutManager = layoutManager
             recyclerView.setHasFixedSize(true)
             recyclerView.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
-                override fun onItemClicked(item: Film) { openDetailedActivity(item) }
+                override fun onItemClicked(item: Film) {
+                    openDetailedActivity(item)
+                }
             })
 
-            recyclerView.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+            recyclerView.addItemDecoration(
+                DividerItemDecoration(
+                    this@MainActivity,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
         }
 
         private fun configureSpinner(): Unit {
-            genres = listOf("все").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }.toMutableList().toList()
-            val adapter = ArrayAdapter<String>(this@MainActivity, android.R.layout.simple_spinner_item, genres)
+            genres = listOf("все").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }
+                .toMutableList().toList()
+            val adapter = ArrayAdapter<String>(
+                this@MainActivity,
+                android.R.layout.simple_spinner_item,
+                genres
+            )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             genreChooser.adapter = adapter
             genreChooser.prompt = "Жанр";
@@ -72,9 +97,15 @@ class MainActivity : AppCompatActivity() {
                     position: Int, id: Long
                 ) {
                     val genre: String = genreChooser.selectedItem.toString()
-                    recyclerView.swapAdapter(FilmsAdapter(films.filter { it.hasGenre(genre) }, object : FilmsAdapter.Callback {
-                        override fun onItemClicked(item: Film) { openDetailedActivity(item) }
-                    }), false)
+                    recyclerView.swapAdapter(
+                        FilmsAdapter(
+                            films.filter { it.hasGenre(genre) },
+                            object : FilmsAdapter.Callback {
+                                override fun onItemClicked(item: Film) {
+                                    openDetailedActivity(item)
+                                }
+                            }), false
+                    )
                 }
 
                 override fun onNothingSelected(arg0: AdapterView<*>) {
@@ -84,12 +115,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         private fun openDetailedActivity(film: Film): Unit {
-            println(film.toString())
-            // TODO:
+
+
+            Intent(this@MainActivity, FilmActivity::class.java).also {
+                it.putExtra(Film::class.java.canonicalName, film as Parcelable)
+                it.putExtra("posterFileName", film.getFileName())
+                startActivity(it)
+            }
         }
-
-
-
     }
 
     private var films: List<Film> = listOf()
@@ -110,11 +143,25 @@ class MainActivity : AppCompatActivity() {
         LoadInfoTask().execute()
 
 
-        // TODO: Оторвать ноги дизайнеру (change background)
         // TODO: Отрисовать детальное активити
-        // TODO: Реализовать передачу фильмов через интенты в детальное активити
         // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
         // TODO: Выбор языка
+        // TODO: Создать интент на переход браузером по ссылке
+    }
+
+    fun createImageFromBitmap(bitmap: Bitmap, fileName: String): Boolean {
+        try {
+            val bytes = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+            val fo = openFileOutput(fileName, Context.MODE_PRIVATE)
+            fo.write(bytes.toByteArray())
+            fo.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+
+        return true
     }
 
 

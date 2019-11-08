@@ -8,7 +8,6 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cinemahelper.asyncTasks.DownloadImageTask
 
 class FilmsAdapter(var items: List<Film>, val callback: Callback): Filterable, RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 

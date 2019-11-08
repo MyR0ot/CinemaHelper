@@ -1,15 +1,16 @@
 package com.example.cinemahelper
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import com.example.cinemahelper.asyncTasks.DownloadImageTask
+import android.os.Parcel
+import android.os.Parcelable
+import java.io.Serializable
+import android.graphics.Bitmap as Bitmap
 
-// TODO: Возможно хранить постер как Image
 
 class Film(val id: String,               // Идентификатор фильма в https://cinemadelux.ru
            val name: String,             // Название фильма
-           val description: String = "", // Описание фильма
+           val description: String,      // Описание фильма
            val duration: String,         // Продолжительность фильма
            var genres: List<String>,     // Жанры
            val tags: List<String>,       // Метки
@@ -17,7 +18,7 @@ class Film(val id: String,               // Идентификатор филь�
            val producer: String,         // режиссер
            val sessions: List<Session>,  // сеансы
            var poster: Bitmap?           // постер BMP
-           ) {
+           ): Serializable, Parcelable {
 
     init {
         if(poster === null){
@@ -36,6 +37,19 @@ class Film(val id: String,               // Идентификатор филь�
     }
 
 
+    constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.createStringArrayList()!!,
+        parcel.createStringArrayList()!!,
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.createTypedArrayList(Session)!!,
+        null
+    ) {
+    }
 
     override fun toString(): String {
         var res: String = "id: $id\nname: $name\nproducer: $producer\nduration: $duration\ngenres: ${genres.toString()}\ntags: ${tags.toString()}\nimgLink: $imgPath\ndescription: $description\n"
@@ -61,9 +75,42 @@ class Film(val id: String,               // Идентификатор филь�
     }
 
 
-    class Session(val date: String, val day: String, val price: String){
+    fun getFileName():String {
+        return this.hashCode().toString() + ".jpj"
+    }
+
+
+
+    class Session(private val date: String, private val day: String, private val price: String): Serializable, Parcelable{
+        constructor(parcel: Parcel) : this(
+            parcel.readString().toString(),
+            parcel.readString().toString(),
+            parcel.readString().toString()
+        ) {
+        }
+
         override fun toString(): String {
             return "date: $date, time: $day, price: $price"
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(date)
+            parcel.writeString(day)
+            parcel.writeString(price)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<Session> {
+            override fun createFromParcel(parcel: Parcel): Session {
+                return Session(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Session?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 
@@ -76,6 +123,32 @@ class Film(val id: String,               // Идентификатор филь�
         if(genre == "все") return true
         val g = genre.toLowerCase()
         return !this.genres.find { it == g }.isNullOrEmpty()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
+        parcel.writeString(name)
+        parcel.writeString(description)
+        parcel.writeString(duration)
+        parcel.writeStringList(genres)
+        parcel.writeStringList(tags)
+        parcel.writeString(imgPath)
+        parcel.writeString(producer)
+        parcel.writeTypedList(sessions)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Film> {
+        override fun createFromParcel(parcel: Parcel): Film {
+            return Film(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Film?> {
+            return arrayOfNulls(size)
+        }
     }
 
 }
