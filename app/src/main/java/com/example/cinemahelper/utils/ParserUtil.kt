@@ -27,10 +27,11 @@ object ParserUtil {
         "sessionDates" to Pair("{\"date\":\"","\"")
     )
 
-    private val changerList: List<Pair<String, String>> = listOf(
-        Pair("\"&#40\"","("),
-        Pair("\"&#41\"",")")
+    private val changersList: List<Pair<String, String>> = listOf(
+        Pair("&#40;","("),
+        Pair("&#41;",")")
     )
+
 
     fun getGenres(films: List<Film>): List<String> {
         var res: HashSet<String> = HashSet()
@@ -98,8 +99,8 @@ object ParserUtil {
 
     private fun parseOneString(text: String, startWord: String, stopWord: String): String {
         val beginIndex: Int = text.indexOf(startWord) + startWord.length
-        val res = text.substring(beginIndex, text.indexOf(stopWord, beginIndex))
-        changerList.forEach{ res.replace(it.first, it.second)}
+        var res = text.substring(beginIndex, text.indexOf(stopWord, beginIndex))
+        changersList.forEach{ res = res.replace(it.first, it.second)}
         return res
     }
 
