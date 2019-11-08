@@ -27,12 +27,13 @@ class MainActivity : AppCompatActivity() {
     inner class LoadInfoTask: AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
 
         override fun doInBackground(vararg params: List<Film>?): Unit {
+            println("do in background")
             films = ParserUtil.loadContent() // load information about films from cinemadelux.ru
-            films = ParserUtil.loadContent()
-            val tmp: MutableList<String> = listOf("все").union(ParserUtil.getGenres(films)).toMutableList()
-            tmp.remove("")
-            genres = tmp.toList()
-            // TODO: Как-то прикрутить адаптер (см main)
+            if(films.isNullOrEmpty()) return
+            this@MainActivity.runOnUiThread {
+                configureRecyclerView()
+                configureSpinner()
+            }
         }
 
         override fun onPostExecute(result: Unit?): Unit {
@@ -47,6 +48,41 @@ class MainActivity : AppCompatActivity() {
         override fun onPreExecute(): Unit {
             progressBar.isVisible = true
         }
+
+        private fun configureRecyclerView(): Unit {
+            println("config recycler view")
+            val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
+            filmsList.layoutManager = layoutManager
+            filmsList.setHasFixedSize(true)
+            filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
+                override fun onItemClicked(item: Film) {
+                    // TODO: Открытие детального активити
+                    println(item.toString())
+                }
+            })
+        }
+
+        private fun configureSpinner(): Unit {
+            val tmp: MutableList<String> = listOf("все").union(ParserUtil.getGenres(films)).toMutableList()
+            tmp.remove("")
+            genres = tmp.toList()
+            val adapter = ArrayAdapter<String>(this@MainActivity, android.R.layout.simple_spinner_item, genres)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            genreChooser.adapter = adapter
+            genreChooser.prompt = "Жанр"; // заголовок
+            genreChooser.setSelection(2); // выделяем элемент
+            genreChooser.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View,
+                    position: Int, id: Long
+                ) {
+                    Toast.makeText(baseContext, "Position = $position", Toast.LENGTH_SHORT).show() // показываем позиция нажатого элемента
+                    // TODO: Обработка нажатия выбора жанра
+                }
+
+                override fun onNothingSelected(arg0: AdapterView<*>) {}
+            }
+        }
     }
 
     private var films: List<Film> = listOf()
@@ -55,6 +91,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var filmsList: RecyclerView
     private lateinit var genreChooser: Spinner
+    private lateinit var titleGenre: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,15 +100,9 @@ class MainActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main)
         loadIDs()
+        LoadInfoTask().execute()
 
 
-        //LoadInfoTask().execute()
-        helpLoader()
-
-        installGenreChooser()
-
-
-        // TODO: Добавить адаптер ПОСЛЕ загрузки фильмов с сайта (в отдельном потоке нельзя?)
         // TODO: Оторвать ноги дизайнеру (change background)
         // TODO: Отрисовать детальное активити
         // TODO: Реализовать передачу фильмов через интенты в детальное активити
@@ -80,59 +111,24 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    @Deprecated("Тест выбора жанра")
-    fun installGenreChooser(): Unit{
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, genres)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        genreChooser.adapter = adapter
-        genreChooser.prompt = "Жанр"; // заголовок
-        genreChooser.setSelection(2); // выделяем элемент
-        genreChooser.onItemSelectedListener = object : OnItemSelectedListener {
-
-            override fun onItemSelected(
-                parent: AdapterView<*>, view: View,
-                position: Int, id: Long
-            ) {
-                Toast.makeText(baseContext, "Position = $position", Toast.LENGTH_SHORT).show() // показываем позиция нажатого элемента
-                // TODO: Обработка нажатия выбора жанра
-            }
-
-            override fun onNothingSelected(arg0: AdapterView<*>) {}
-        }
-    }
-
-
-    @Deprecated("Переписать выполнение в другом потоке")
-    fun helpLoader(): Unit { // TODO: отрефакторить эту дичь и запустить в отдельном потоке
-        films = ParserUtil.loadContent()
-        val tmp: MutableList<String> = listOf("все").union(ParserUtil.getGenres(films)).toMutableList()
-        tmp.remove("")
-        genres = tmp.toList()
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this) // последовательное отображение сверху вниз
-        filmsList.layoutManager = layoutManager
-        filmsList.setHasFixedSize(true)
-        filmsList.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
-            override fun onItemClicked(item: Film) {
-                // TODO: Открытие детального активити
-                println(item.toString())
-            }
-        })
-    }
-
     private fun loadIDs(): Unit {
         this.errorMsg = findViewById(R.id.tv_error_message)
         this.progressBar = findViewById(R.id.pb_loading_films)
         this.filmsList = findViewById(R.id.rv_films)
         this.genreChooser = findViewById(R.id.sp_genre_chooser)
+        this.titleGenre = findViewById(R.id.tv_title_genre)
     }
 
     fun showResultTextView(): Unit {
         errorMsg.isVisible = false
+        titleGenre.isVisible = true
+        genreChooser.isVisible = true
         filmsList.isVisible = true
     }
 
     fun showErrorMessageTextView(): Unit {
+        titleGenre.isVisible = false
+        genreChooser.isVisible = false
         filmsList.isVisible = false
         errorMsg.isVisible = true
     }

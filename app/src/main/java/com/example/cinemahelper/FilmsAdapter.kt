@@ -44,7 +44,7 @@ class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.
         }
 
         private fun setTextView(tv: TextView, title:String, text: String): Unit {
-            if(!text.isEmpty()){
+            if(text.isNotEmpty()){
                 tv.text = "$title: $text"
             } else {
                 tv.text = ""
