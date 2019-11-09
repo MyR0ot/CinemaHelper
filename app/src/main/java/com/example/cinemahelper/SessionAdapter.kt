@@ -1,5 +1,6 @@
 package com.example.cinemahelper
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,10 +25,11 @@ class SessionAdapter(var items: List<Film.Session>, val callback: SessionAdapter
         private val price = itemView.findViewById<TextView>(R.id.tv_price)
 
 
+        @SuppressLint("SetTextI18n")
         fun bind(session: Film.Session) {
-            date.text = session.date
+            date.text = "${session.getDay()} ${session.getMonth()}"
             time.text = session.time
-            price.text = session.price
+            price.text = session.price + "₽"
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(items[adapterPosition])
@@ -38,11 +40,4 @@ class SessionAdapter(var items: List<Film.Session>, val callback: SessionAdapter
     interface Callback {
         fun onItemClicked(item: Film.Session)
     }
-
-
-    fun updateList(newList: List<Film.Session>): Unit {
-        items = newList
-        notifyDataSetChanged()
-    }
-
 }

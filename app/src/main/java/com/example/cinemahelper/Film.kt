@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Parcel
 import android.os.Parcelable
 import java.io.Serializable
+import java.text.SimpleDateFormat
 import android.graphics.Bitmap as Bitmap
 
 
@@ -88,6 +89,27 @@ class Film(val id: String,               // Идентификатор филь�
             parcel.readString().toString(),
             parcel.readString().toString()
         ) {
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        fun getMonth(): String {
+            val arMonths = arrayListOf<String>("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") // TODO: перевести
+            val date = SimpleDateFormat("yyyy-MM-dd").parse(date)
+            date?.let { return arMonths[it.month] } ?: run { return "undefined month"}
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        fun getDay(): String {
+            val day = date.substring(8, 10)
+            if(day[0] == '0') { return day[1].toString()}
+
+            return day
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        fun getYear(): String {
+            val date =  SimpleDateFormat("yyyy-MM-dd").parse(date)
+            date?.let { return it.year.toString() } ?: run { return "undefined year"}
         }
 
         override fun toString(): String {

@@ -139,8 +139,6 @@ class MainActivity : AppCompatActivity() {
         configChangeLanguage()
         LoadInfoTask().execute()
 
-        // TODO: Отрисовать детальное активити
-        // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
     }
 
     fun createImageFromBitmap(bitmap: Bitmap, fileName: String): Boolean {

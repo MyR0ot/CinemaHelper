@@ -174,6 +174,7 @@ object ParserUtil {
             }
         }
 
+        sessions.reverse()
         return sessions.toList()
     }
 
