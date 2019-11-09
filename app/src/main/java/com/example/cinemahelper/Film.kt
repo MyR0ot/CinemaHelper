@@ -34,6 +34,7 @@ class Film(val id: String,               // Идентификатор филь�
         }
 
         this.genres = genres.map { it.toLowerCase() }
+        this.description
     }
 
 
@@ -81,7 +82,7 @@ class Film(val id: String,               // Идентификатор филь�
 
 
 
-    class Session(private val date: String, private val day: String, private val price: String): Serializable, Parcelable{
+    class Session(val date: String, val time: String, val price: String): Serializable, Parcelable{
         constructor(parcel: Parcel) : this(
             parcel.readString().toString(),
             parcel.readString().toString(),
@@ -90,12 +91,12 @@ class Film(val id: String,               // Идентификатор филь�
         }
 
         override fun toString(): String {
-            return "date: $date, time: $day, price: $price"
+            return "date: $date, time: $time, price: $price"
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             parcel.writeString(date)
-            parcel.writeString(day)
+            parcel.writeString(time)
             parcel.writeString(price)
         }
 

@@ -5,23 +5,25 @@ import android.os.Bundle
 import android.widget.TextView
 import android.graphics.BitmapFactory
 import android.widget.ImageView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_film.*
+import android.content.Intent
+import android.net.Uri
 
 
 class FilmActivity : AppCompatActivity() {
 
     private lateinit var film: Film
 
-    private lateinit var poster: ImageView
-    private lateinit var description: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_film)
-        loadIDs()
         getInfoFromIntent()
 
-        description.text = film.description
-        poster.setImageBitmap(film.poster)
+
+        inflate()
     }
 
     private fun getInfoFromIntent(): Unit {
@@ -31,9 +33,29 @@ class FilmActivity : AppCompatActivity() {
         }
     }
 
+    private fun inflate(){
+        iv_main_poster.setImageBitmap(film.poster)
+        tv_description.text = film.description
+        configureRecyclerView()
+    }
 
-    private fun loadIDs(): Unit {
-        this.description = findViewById(R.id.tv_description)
-        this.poster = findViewById(R.id.iv_main_poster)
+
+    private fun configureRecyclerView(): Unit {
+
+        rv_sessions.layoutManager = LinearLayoutManager(this@FilmActivity, LinearLayoutManager.VERTICAL, true)
+        rv_sessions.setHasFixedSize(true)
+        rv_sessions.adapter = SessionAdapter(film.sessions, object : SessionAdapter.Callback {
+            override fun onItemClicked(item: Film.Session) {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(film.getLink()))
+                startActivity(browserIntent)
+            }
+        })
+
+        rv_sessions.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 }

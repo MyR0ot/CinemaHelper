@@ -4,4 +4,6 @@
     <string name="error_message">Произошла ошибка! (Проверьте подключение к интернету и перезапустите приложение)</string>
     <string name="title">Сейчас в кино</string>
     <string name="language_title">Язык:</string>
+    <string name="description">Описание</string>
+    <string name="sessions">Сеансы</string>
 </resources>

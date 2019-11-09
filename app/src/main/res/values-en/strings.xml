@@ -4,4 +4,6 @@
     <string name="language_title">Language:</string>
     <string name="title">Today\'s films</string>
     <string name="error_message">Something gone wrong! (Check your Internet connection and restart the application)</string>
+    <string name="description">Description</string>
+    <string name="sessions">Sessions</string>
 </resources>

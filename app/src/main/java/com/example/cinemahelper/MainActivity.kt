@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: Unit?): Unit {
-            progressBar.isVisible = false
+            pb_loading_films.isVisible = false
             if (films.isNullOrEmpty()) {
                 showErrorMessageTextView()
                 return
@@ -59,21 +59,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onPreExecute(): Unit {
-            progressBar.isVisible = true
+            pb_loading_films.isVisible = true
         }
 
         private fun configureRecyclerView(): Unit {
             val layoutManager: RecyclerView.LayoutManager =
                 LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(true)
-            recyclerView.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
+            rv_films.layoutManager = layoutManager
+            rv_films.setHasFixedSize(true)
+            rv_films.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
                 override fun onItemClicked(item: Film) {
                     openDetailedActivity(item)
                 }
             })
 
-            recyclerView.addItemDecoration(
+            rv_films.addItemDecoration(
                 DividerItemDecoration(
                     this@MainActivity,
                     DividerItemDecoration.VERTICAL
@@ -90,16 +90,16 @@ class MainActivity : AppCompatActivity() {
                 genres
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            genreChooser.adapter = adapter
-            genreChooser.prompt = "Жанр";
-            genreChooser.setSelection(0); // default: all genres display
-            genreChooser.onItemSelectedListener = object : OnItemSelectedListener {
+            sp_genre_chooser.adapter = adapter
+            sp_genre_chooser.prompt = "Жанр";
+            sp_genre_chooser.setSelection(0); // default: all genres display
+            sp_genre_chooser.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>, view: View,
                     position: Int, id: Long
                 ) {
-                    val genre: String = genreChooser.selectedItem.toString()
-                    recyclerView.swapAdapter(
+                    val genre: String = sp_genre_chooser.selectedItem.toString()
+                    rv_films.swapAdapter(
                         FilmsAdapter(
                             films.filter { it.hasGenre(genre) },
                             object : FilmsAdapter.Callback {
@@ -111,13 +111,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(arg0: AdapterView<*>) {
-                    genreChooser.setSelection(0);
+                    sp_genre_chooser.setSelection(0);
                 }
             }
         }
 
         private fun openDetailedActivity(film: Film): Unit {
-
 
             Intent(this@MainActivity, FilmActivity::class.java).also {
                 it.putExtra(Film::class.java.canonicalName, film as Parcelable)
@@ -129,12 +128,6 @@ class MainActivity : AppCompatActivity() {
 
     private var films: List<Film> = listOf()
     private var genres: List<String> = listOf()
-    private lateinit var errorMsg: TextView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var genreChooser: Spinner
-    private lateinit var titleGenre: TextView
-    private lateinit var title: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,15 +135,12 @@ class MainActivity : AppCompatActivity() {
         loadLocale()
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main)
-        loadIDs()
 
         configChangeLanguage()
         LoadInfoTask().execute()
 
-
         // TODO: Отрисовать детальное активити
         // TODO: Реализовать подгрузку контента если подключение к интернету появилось после загрузки приложения
-        // TODO: Создать интент на переход браузером по ссылке
     }
 
     fun createImageFromBitmap(bitmap: Bitmap, fileName: String): Boolean {
@@ -168,29 +158,21 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun loadIDs(): Unit {
-        this.errorMsg = findViewById(R.id.tv_error_message)
-        this.progressBar = findViewById(R.id.pb_loading_films)
-        this.recyclerView = findViewById(R.id.rv_films)
-        this.genreChooser = findViewById(R.id.sp_genre_chooser)
-        this.titleGenre = findViewById(R.id.tv_title_genre)
-        this.title = findViewById(R.id.tv_title)
-    }
 
     fun showResultTextView(): Unit {
-        errorMsg.isVisible = false
-        titleGenre.isVisible = true
-        title.isVisible = true
-        genreChooser.isVisible = true
-        recyclerView.isVisible = true
+        tv_error_message.isVisible = false
+        tv_title_genre.isVisible = true
+        tv_title.isVisible = true
+        sp_genre_chooser.isVisible = true
+        rv_films.isVisible = true
     }
 
     fun showErrorMessageTextView(): Unit {
-        titleGenre.isVisible = false
-        title.isVisible = false
-        genreChooser.isVisible = false
-        recyclerView.isVisible = false
-        errorMsg.isVisible = true
+        tv_title_genre.isVisible = false
+        tv_title.isVisible = false
+        sp_genre_chooser.isVisible = false
+        rv_films.isVisible = false
+        tv_error_message.isVisible = true
     }
 
 

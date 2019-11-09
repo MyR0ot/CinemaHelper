@@ -22,7 +22,7 @@ object ParserUtil {
         "img" to Pair("<meta itemProp=\"image\" content=\"", "\"/>"),
         "tags" to Pair("<span class=\"film_label\">", "</span>"),
         "producer" to Pair("<span itemProp=\"name\">", "</span>"),
-        "sessionTimes" to Pair(",\"time\":\"","\",\""),
+        "sessionTimes" to Pair("\"time\":\"","\",\""),
         "sessionPrices" to Pair("\"price\":",","),
         "sessionDates" to Pair("{\"date\":\"","\"")
     )
@@ -119,6 +119,22 @@ object ParserUtil {
         return res.toList()
     }
 
+
+    private fun parseAllStringsWithIndexes(text: String, startWord: String, stopWord: String): List<Pair<String, Int>> {
+        val res: MutableList<Pair<String, Int>> = mutableListOf()
+        var beginIndex: Int = text.indexOf(startWord)
+
+        while(beginIndex != -1){
+            beginIndex += startWord.length
+            val endIndex = text.indexOf(stopWord, beginIndex)
+            if(endIndex == -1) break
+            res.add(Pair(text.substring(beginIndex, endIndex), beginIndex))
+            beginIndex = text.indexOf(startWord, beginIndex)
+        }
+
+        return res.toList()
+    }
+
     private fun parseFilm(url: String, id: String): Film? {
         val html: String? = loadHTML(url, "utf-8")
         html ?: return null
@@ -126,18 +142,12 @@ object ParserUtil {
         try {
             val name: String = parseOneString(html,  parseMap["name"]!!.first,  parseMap["name"]!!.second)
             val duration: String = parseOneString(html,  parseMap["duration"]!!.first,  parseMap["duration"]!!.second)
-            val description: String = parseOneString(html,  parseMap["description"]!!.first,  parseMap["description"]!!.second)
+            val description: String = "\t\t" + parseOneString(html,  parseMap["description"]!!.first,  parseMap["description"]!!.second)
             val imgPath: String = parseOneString(html,  parseMap["img"]!!.first,  parseMap["img"]!!.second)
             val tags: List<String> = parseAllStrings(html, parseMap["tags"]!!.first, parseMap["tags"]!!.second)
             val genres: List<String> = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ")
             val producer: String = parseOneString(html, parseMap["producer"]!!.first, parseMap["producer"]!!.second)
-
-            val sessionDates: List<String> = parseAllStrings(html, parseMap["sessionDates"]!!.first, parseMap["sessionDates"]!!.second) // TODO: Проверить
-            val sessionTimes: List<String> = parseAllStrings(html, parseMap["sessionTimes"]!!.first, parseMap["sessionTimes"]!!.second) // TODO: Проверить
-            val sessionPrices: List<String> = parseAllStrings(html, parseMap["sessionPrices"]!!.first, parseMap["sessionPrices"]!!.second) // TODO: Проверить
-
-            val sessions: List<Film.Session> = sessionDates.zip(sessionTimes).zip(sessionPrices) {(a,b), c -> listOf(a, b, c)}.map { Film.Session(it[0], it[1], it[2]) } // TODO: Проверить
-
+            val sessions =  parseSessions(html)
 
 
             return Film(id, name, description, duration, genres, tags, imgPath, producer, sessions, null) // TODO: парсе сессии
@@ -147,4 +157,44 @@ object ParserUtil {
         }
     }
 
+    private fun parseSessions(html: String): List<Film.Session> {
+        val sessionDates: List<Pair<String, Int>> = parseAllStringsWithIndexes(html, parseMap["sessionDates"]!!.first, parseMap["sessionDates"]!!.second)
+        val sessionTimes: List<Pair<String, Int>> = parseAllStringsWithIndexes(html, parseMap["sessionTimes"]!!.first, parseMap["sessionTimes"]!!.second)
+        val sessionPrices: List<Pair<String, Int>> = parseAllStringsWithIndexes(html, parseMap["sessionPrices"]!!.first, parseMap["sessionPrices"]!!.second)
+
+        val intervals = sessionDates.map{ it.second }.plus(Int.MAX_VALUE).sorted().zipWithNext()
+
+        val splitTimes = intervals.map { interval -> sessionTimes.filter { time -> time.second > interval.first && time.second < interval.second }}
+        val splitPrices = intervals.map { interval -> sessionPrices.filter { price -> price.second > interval.first && price.second < interval.second } }
+
+        val sessions: MutableList<Film.Session> = mutableListOf()
+        for (i in 0 until sessionDates.size){ // И здесь я не выдержал...
+            for(j in 0 until splitTimes[i].size ) {
+                sessions.add(Film.Session(sessionDates[i].first, splitTimes[i][j].first, splitPrices[i][j].first))
+            }
+        }
+
+        return sessions.toList()
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

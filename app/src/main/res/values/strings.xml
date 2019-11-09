@@ -9,4 +9,6 @@
     <string name="title">Сейчас в кино</string>
     <string name="language_title">Язык:</string>
     <string name="flag_of_county" translatable="false">flag of county</string>
+    <string name="description">Описание</string>
+    <string name="sessions">Сеансы</string>
 </resources>
