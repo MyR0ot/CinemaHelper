@@ -84,13 +84,11 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
         return result
     }
 
-
     override fun onLongPress(e: MotionEvent?) {
     }
 
     override fun onShowPress(e: MotionEvent?) {
     }
-
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         this.gd.onTouchEvent(event)
@@ -119,7 +117,6 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
         tv_description.text = film.description
         configureRecyclerView()
     }
-
 
     private fun configureRecyclerView(): Unit {
 
