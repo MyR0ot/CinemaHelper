@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="genre_filter">Жанр</string>
+    <string name="error_message">Произошла ошибка! (Проверьте подключение к интернету и перезапустите приложение)</string>
+    <string name="title">Сейчас в кино</string>
+    <string name="language_title">Язык:</string>
+</resources>

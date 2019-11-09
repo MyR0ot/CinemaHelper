@@ -9,12 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FilmsAdapter(var items: List<Film>, val callback: Callback): Filterable, RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
-
-
-    override fun getFilter(): Filter {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             = FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_list_item, parent, false))

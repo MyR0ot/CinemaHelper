@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">CinemaHelper</string>
-    <string name="id">Введите id в Вконтакте</string>
-    <string name="search">Найти!</string>
-    <string name="info">Результат будет отображен здесь</string>
+    <string name="app_name" translatable="false">CinemaHelper</string>
+    <string name="id" translatable="false">Введите id в Вконтакте</string>
+    <string name="search" translatable="false">Найти!</string>
+    <string name="info" translatable="false">Результат будет отображен здесь</string>
 
     <string name="error_message">Произошла ошибка! (Проверьте подключение к интернету и перезапустите приложение)</string>
     <string name="genre_filter">Жанр:</string>
+    <string name="title">Сейчас в кино</string>
+    <string name="language_title">Язык:</string>
+    <string name="flag_of_county" translatable="false">flag of county</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="genre_filter">Genre:</string>
+    <string name="language_title">Language:</string>
+    <string name="title">Today\'s films</string>
+    <string name="error_message">Something gone wrong! (Check your Internet connection and restart the application)</string>
+</resources>
