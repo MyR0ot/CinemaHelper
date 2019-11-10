@@ -7,6 +7,15 @@
     android:padding="@dimen/small_indent"
     tools:context=".FilmActivity">
 
+    <TextView
+        android:id="@+id/tv_film_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/largest_text"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/largest_size"
+                android:textSize="@dimen/title_text"
                 android:textColor="@color/colorWhite"
                 android:text="@string/sessions"/>
 
@@ -49,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="@dimen/largest_size"
+        android:textSize="@dimen/title_text"
         android:textColor="@color/colorWhite"
         android:text="@string/description"
         android:layout_marginBottom="@dimen/medium_indent"/>

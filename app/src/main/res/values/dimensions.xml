@@ -14,8 +14,8 @@
     <dimen name="small_text">12sp</dimen>
     <dimen name="medium_text">14sp</dimen>
     <dimen name="large_text">16sp</dimen>
-    <dimen name="title_size">18sp</dimen>
-    <dimen name="largest_size">28sp</dimen>
+    <dimen name="title_text">18sp</dimen>
+    <dimen name="largest_text">28sp</dimen>
 
     <dimen name="time_text">22sp</dimen>
     <dimen name="date_text">17sp</dimen>

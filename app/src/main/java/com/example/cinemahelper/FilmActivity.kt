@@ -113,6 +113,7 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
     }
 
     private fun inflate(){
+        tv_film_name.text = film.name
         iv_main_poster.setImageBitmap(film.poster)
         tv_description.text = film.description
         configureRecyclerView()

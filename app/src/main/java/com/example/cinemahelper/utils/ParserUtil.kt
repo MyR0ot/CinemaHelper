@@ -1,6 +1,7 @@
 package com.example.cinemahelper.utils
 
 import android.os.StrictMode
+import androidx.annotation.BoolRes
 import com.example.cinemahelper.Film
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
@@ -27,6 +28,24 @@ object ParserUtil {
         "sessionDates" to Pair("{\"date\":\"","\"")
     )
 
+    private val genresMap: Map<String, String> = mapOf(
+        "мюзикл" to "musical",
+        "документальный" to "documentary",
+        "приключения" to "adventures",
+        "мультфильм" to "cartoons",
+        "фэнтези" to "fantasy",
+        "музыка" to "music",
+        "комедия" to "comedy",
+        "ужасы" to "horrors",
+        "мелодрама" to "melodrama",
+        "семейный" to "family",
+        "триллер" to "thriller",
+        "драма" to "drama",
+        "боевик" to "action",
+        "фантастика" to "fantastic"
+        )
+
+
     private val changersList: List<Pair<String, String>> = listOf(
         Pair("&#40;","("),
         Pair("&#41;",")")
@@ -40,13 +59,13 @@ object ParserUtil {
     }
 
 
-    fun loadContent():List<Film> {
+    fun loadContent(isRussianLocale: Boolean):List<Film> {
         val films: HashSet<Film> = HashSet();
         try {
             val mainPageHTML = loadHTML("https://cinemadelux.ru/", "utf-8")
             val ids: HashSet<String>? = mainPageHTML?.let { parseIds(it) }
             for(id in ids!!){
-                val film: Film? = parseFilm("https://cinemadelux.ru/films/$id", id)
+                val film: Film? = parseFilm("https://cinemadelux.ru/films/$id", id, isRussianLocale)
                 film?.let { films.add(it) }
             }
         } catch (e: Exception){
@@ -58,6 +77,7 @@ object ParserUtil {
 
 
     private fun loadHTML(url: String, charsetName: String = "windows-1251"): String?  {
+
         val sb: StringBuilder = StringBuilder()
         val policy: StrictMode.ThreadPolicy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
@@ -135,7 +155,7 @@ object ParserUtil {
         return res.toList()
     }
 
-    private fun parseFilm(url: String, id: String): Film? {
+    private fun parseFilm(url: String, id: String, isRussianLocale: Boolean): Film? {
         val html: String? = loadHTML(url, "utf-8")
         html ?: return null
 
@@ -145,16 +165,30 @@ object ParserUtil {
             val description: String = "\t\t" + parseOneString(html,  parseMap["description"]!!.first,  parseMap["description"]!!.second)
             val imgPath: String = parseOneString(html,  parseMap["img"]!!.first,  parseMap["img"]!!.second)
             val tags: List<String> = parseAllStrings(html, parseMap["tags"]!!.first, parseMap["tags"]!!.second)
-            val genres: List<String> = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ")
+            val genres: List<String> = parseGenres(html, isRussianLocale)
             val producer: String = parseOneString(html, parseMap["producer"]!!.first, parseMap["producer"]!!.second)
             val sessions =  parseSessions(html)
 
 
-            return Film(id, name, description, duration, genres, tags, imgPath, producer, sessions, null) // TODO: парсе сессии
+            return Film(id, name, description, duration, genres, tags, imgPath, producer, sessions, null)
         } catch (e: Exception){
             System.err.println("Parse error!  filmID: $id")
             return null
         }
+    }
+
+    private fun parseGenres(html: String, isRussianLocale: Boolean): List<String> {
+        val russianGenres = parseOneString(html,  parseMap["genres"]!!.first, parseMap["genres"]!!.second).split(", ")
+        if(isRussianLocale){
+           return russianGenres
+        }
+
+        return russianGenres.map {
+            if(genresMap.containsKey(it)){
+                genresMap[it]!!}
+            else it
+        }
+
     }
 
     private fun parseSessions(html: String): List<Film.Session> {

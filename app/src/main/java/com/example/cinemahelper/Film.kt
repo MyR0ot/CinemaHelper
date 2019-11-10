@@ -143,7 +143,7 @@ class Film(val id: String,               // Идентификатор филь�
 
     @SuppressLint("DefaultLocale")
     fun hasGenre(genre: String): Boolean {
-        if(genre == "все") return true
+        if(genre == "все" || genre == "all") return true
         val g = genre.toLowerCase()
         return !this.genres.find { it == g }.isNullOrEmpty()
     }

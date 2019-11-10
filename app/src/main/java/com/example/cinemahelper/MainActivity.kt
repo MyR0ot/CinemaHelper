@@ -22,6 +22,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.widget.*
 import androidx.core.os.ConfigurationCompat
+import com.example.cinemahelper.utils.LocaleChecker
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     inner class LoadInfoTask : AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
 
         override fun doInBackground(vararg params: List<Film>?): Unit {
-            films = ParserUtil.loadContent() // load information about films from cinemadelux.ru
+            films = ParserUtil.loadContent(LocaleChecker.isRussianLocale(this@MainActivity)) // load information about films from cinemadelux.ru
             films.forEach { it ->
                 it.poster?.let { poster ->
                     this@MainActivity.createImageFromBitmap(
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager(this@MainActivity) // последовательное отображение сверху вниз
             rv_films.layoutManager = layoutManager
             rv_films.setHasFixedSize(true)
-            rv_films.adapter = FilmsAdapter(films, object : FilmsAdapter.Callback {
+            rv_films.adapter = FilmsAdapter(films, LocaleChecker.isRussianLocale(this@MainActivity),  object : FilmsAdapter.Callback {
                 override fun onItemClicked(item: Film) {
                     openDetailedActivity(item)
                 }
@@ -82,8 +83,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         private fun configureSpinner(): Unit {
-            genres = listOf("все").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }
-                .toMutableList().toList()
+            if(LocaleChecker.isRussianLocale(this@MainActivity)){
+                genres = listOf("все").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }.toMutableList().toList()
+            } else {
+                genres = listOf("all").union(ParserUtil.getGenres(films)).filter { it.isNotEmpty() }.toMutableList().toList()
+            }
+
             val adapter = ArrayAdapter<String>(
                 this@MainActivity,
                 android.R.layout.simple_spinner_item,
@@ -91,8 +96,7 @@ class MainActivity : AppCompatActivity() {
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sp_genre_chooser.adapter = adapter
-            sp_genre_chooser.prompt = "Жанр";
-            sp_genre_chooser.setSelection(0); // default: all genres display
+            sp_genre_chooser.setSelection(0); // default: 'all' genres display
             sp_genre_chooser.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>, view: View,
@@ -101,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     val genre: String = sp_genre_chooser.selectedItem.toString()
                     rv_films.swapAdapter(
                         FilmsAdapter(
-                            films.filter { it.hasGenre(genre) },
+                            films.filter { it.hasGenre(genre) }, LocaleChecker.isRussianLocale(this@MainActivity),
                             object : FilmsAdapter.Callback {
                                 override fun onItemClicked(item: Film) {
                                     openDetailedActivity(item)
@@ -188,9 +192,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeLanguage(): Unit {
-        val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
-        println(currentLocale.language)
-        if(currentLocale.language == "ru"){
+        if(LocaleChecker.isRussianLocale(this)){
             setLocale("en")
         } else setLocale("ru")
         recreate()
@@ -212,6 +214,7 @@ class MainActivity : AppCompatActivity() {
         val language: String? = prefs.getString("language", "ru")
         language?.let { setLocale(it) }
     }
+
 }
 
 

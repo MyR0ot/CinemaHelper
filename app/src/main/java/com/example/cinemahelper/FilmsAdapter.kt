@@ -5,9 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.ConfigurationCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+class FilmsAdapter(var items: List<Film>, isRussianLocale: Boolean,  val callback: Callback): RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+
+    private var producerTitle: String = "Producer"
+
+    init {
+        if(isRussianLocale){
+            producerTitle = "Режиссер"
+        } else {
+            producerTitle = "Producer"
+        }
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -32,7 +43,7 @@ class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.
         fun bind(film: Film) {
             poster.setImageBitmap(film.poster)
             name.text = film.name
-            setTextView(producer, "Режиссер", film.producer) // TODO: Что делать с переводом
+            setTextView(producer, producerTitle, film.producer)
             duration.text = film.duration
             genres.text = film.getGenresAsString()
 

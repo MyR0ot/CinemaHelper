@@ -20,7 +20,7 @@
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/title_size"
+            android:textSize="@dimen/title_text"
             android:textColor="@color/colorWhite"/>
 
         <TextView
@@ -39,7 +39,7 @@
             android:id="@+id/tv_genres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/medium_text" />
+            android:textSize="@dimen/large_text" />
 
     </LinearLayout>
 
