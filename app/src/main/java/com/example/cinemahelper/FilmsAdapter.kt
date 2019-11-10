@@ -33,12 +33,12 @@ class FilmsAdapter(var items: List<Film>, val callback: Callback): RecyclerView.
             poster.setImageBitmap(film.poster)
             name.text = film.name
             setTextView(producer, "Режиссер", film.producer) // TODO: Что делать с переводом
-            setTextView(duration, "Продолжительность", film.duration)
-            setTextView(genres, "Жанры", film.getGenresAsString())
+            duration.text = film.duration
+            genres.text = film.getGenresAsString()
 
 
             itemView.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(items[adapterPosition])
+                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(film)
             }
         }
 

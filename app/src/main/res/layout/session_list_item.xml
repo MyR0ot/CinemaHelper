@@ -9,7 +9,8 @@
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textSize="@dimen/date_text"/>
+        android:textSize="@dimen/date_text"
+        android:textColor="@color/colorDarkGreen"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,12 +18,14 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textColor="@color/colorGreen"
             android:textSize="@dimen/time_text"/>
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:textSize="@dimen/price_text"
+            android:textColor="@color/colorGreen"
             android:gravity="center"/>
 
     </LinearLayout>
