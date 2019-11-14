@@ -1,82 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/small_indent"
-    tools:context=".FilmActivity">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sc_layout"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_film_name"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/largest_text"/>
+        android:orientation="vertical"
+        android:padding="@dimen/small_indent"
+        tools:context=".FilmActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/medium_indent">
-
-        <ImageView
-            android:id="@+id/iv_main_poster"
-            android:layout_width="@dimen/main_poster_width"
-            android:layout_height="@dimen/main_poster_height"
-            android:layout_marginEnd="@dimen/small_indent"
-            android:layout_gravity="center"/>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="@dimen/title_text"
-                android:textColor="@color/colorWhite"
-                android:text="@string/sessions"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_sessions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:foregroundGravity="center">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="@dimen/title_text"
-        android:textColor="@color/colorWhite"
-        android:text="@string/description"
-        android:layout_marginBottom="@dimen/medium_indent"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_film_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/small_indent"
-            android:paddingEnd="@dimen/small_indent"
-            android:textSize="@dimen/large_text"
-            />
-    </ScrollView>
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/largest_text"/>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/medium_indent">
+
+            <ImageView
+                android:id="@+id/iv_main_poster"
+                android:layout_width="@dimen/main_poster_width"
+                android:layout_height="@dimen/main_poster_height"
+                android:layout_marginEnd="@dimen/small_indent"
+                android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/title_text"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/sessions"/>
 
 
-</LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sessions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/title_text"
+            android:textColor="@color/colorWhite"
+            android:text="@string/description"
+            android:layout_marginBottom="@dimen/medium_indent"/>
+
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/small_indent"
+                android:paddingEnd="@dimen/small_indent"
+                android:textSize="@dimen/large_text"
+                />
+    </LinearLayout>
+
+
+</ScrollView>
+

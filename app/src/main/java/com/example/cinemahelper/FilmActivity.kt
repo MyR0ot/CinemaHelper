@@ -18,7 +18,6 @@ import android.widget.Toast
 
 
 
-
 class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
     override fun onScroll(
         e1: MotionEvent?,
@@ -54,7 +53,6 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
     override fun onDown(e: MotionEvent?): Boolean {
         return true
     }
-
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
         var result = false
         try {
@@ -92,6 +90,7 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         this.gd.onTouchEvent(event)
+
         return super.onTouchEvent(event)
     }
 
@@ -101,7 +100,7 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_film)
         getInfoFromIntent()
-        gd = GestureDetectorCompat(this, this)
+        gd = GestureDetectorCompat(sc_layout.context, this)
         inflate()
     }
 
