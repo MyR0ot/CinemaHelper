@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">CinemaHelper</string>
+    <string name="app_name" translatable="false">CinemaDelux</string>
     <string name="id" translatable="false">Введите id в Вконтакте</string>
     <string name="search" translatable="false">Найти!</string>
     <string name="info" translatable="false">Результат будет отображен здесь</string>

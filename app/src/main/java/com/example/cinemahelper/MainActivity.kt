@@ -31,7 +31,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
-    inner class LoadInfoTask : AsyncTask<List<Film>, Unit, Unit>() { // TODO: Перенести в asyncTasks
+    inner class LoadInfoTask : AsyncTask<List<Film>, Unit, Unit>() {
 
         override fun doInBackground(vararg params: List<Film>?): Unit {
             films = ParserUtil.loadContent(LocaleChecker.isRussianLocale(this@MainActivity)) // load information about films from cinemadelux.ru
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sp_genre_chooser.adapter = adapter
-            sp_genre_chooser.setSelection(0); // default: 'all' genres display
+            sp_genre_chooser.setSelection(0) // default: 'all' genres display
             sp_genre_chooser.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>, view: View,
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(arg0: AdapterView<*>) {
-                    sp_genre_chooser.setSelection(0);
+                    sp_genre_chooser.setSelection(0)
                 }
             }
         }
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocale()
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
 
         configChangeLanguage()

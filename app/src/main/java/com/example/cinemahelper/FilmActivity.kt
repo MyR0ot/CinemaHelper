@@ -2,19 +2,15 @@ package com.example.cinemahelper
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import android.graphics.BitmapFactory
-import android.widget.ImageView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_film.*
 import android.content.Intent
 import android.net.Uri
 import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.core.view.GestureDetectorCompat
-import android.widget.Toast
 
 
 
@@ -28,22 +24,24 @@ class FilmActivity : GestureDetector.OnGestureListener, AppCompatActivity() {
         return true
     }
 
+    private lateinit var  gd: GestureDetectorCompat
+
     private val SWIPE_THRESHOLD = 100
     private val SWIPE_VELOCITY_THRESHOLD = 100
 
-    private lateinit var  gd: GestureDetectorCompat
 
-    fun onSwipeTop() {
+
+    private fun onSwipeTop() {
     }
 
-    fun onSwipeRight() {
+    private fun onSwipeRight() {
         finish()
     }
 
-    fun onSwipeLeft() {
+    private fun onSwipeLeft() {
     }
 
-    fun onSwipeBottom() {
+    private fun onSwipeBottom() {
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
