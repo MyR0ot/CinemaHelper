@@ -65,14 +65,19 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/title_text" />
 
-
-    <TextView
-        android:id="@+id/tv_description"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/small_indent"
-        android:paddingEnd="@dimen/small_indent"
-        android:textSize="@dimen/large_text" />
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/small_indent"
+            android:paddingEnd="@dimen/small_indent"
+            android:textSize="@dimen/large_text" />
+
+    </ScrollView>
 
 
 </LinearLayout>
