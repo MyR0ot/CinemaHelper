@@ -8,7 +8,6 @@ import android.content.res.Configuration
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -19,7 +18,6 @@ import android.view.View
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import android.graphics.Bitmap
-import android.os.Build
 import android.widget.*
 import androidx.core.os.ConfigurationCompat
 import com.example.cinemahelper.utils.LocaleChecker
