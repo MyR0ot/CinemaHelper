@@ -118,7 +118,10 @@ object ParserUtil {
     }
 
     private fun parseOneString(text: String, startWord: String, stopWord: String): String {
-        val beginIndex: Int = text.indexOf(startWord) + startWord.length
+        val startIndex = text.indexOf(startWord)
+        if(startIndex == -1)
+            return ""
+        val beginIndex: Int = startIndex + startWord.length
         var res = text.substring(beginIndex, text.indexOf(stopWord, beginIndex))
         changersList.forEach{ res = res.replace(it.first, it.second)}
         return res

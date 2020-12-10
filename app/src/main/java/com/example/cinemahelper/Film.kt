@@ -16,7 +16,7 @@ class Film(val id: String,               // Идентификатор филь�
            var genres: List<String>,     // Жанры
            val tags: List<String>,       // Метки
            val imgPath: String,          // Адрес картинки
-           val producer: String,         // режиссер
+           val producer: String,         // режиссер (на самом деле тут актеры)
            val sessions: List<Session>,  // сеансы
            var poster: Bitmap?           // постер BMP
            ): Serializable, Parcelable {
